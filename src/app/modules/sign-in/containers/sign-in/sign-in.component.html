@@ -1,0 +1,13 @@
+<h1>Please sign in</h1>
+
+<button (click)="fakeSignIn()" [disabled]="(isProcessing$ | async)">
+  Sign in (fake)
+</button>
+
+<button (click)="signIn()" [disabled]="(isProcessing$ | async)">
+  Sign in
+</button>
+
+<ul *ngIf="(errors$ | async); let errors">
+  <li *ngFor="let error of errors">{{ error }}</li>
+</ul>
