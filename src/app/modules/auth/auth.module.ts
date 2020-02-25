@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { AuthState } from './state/auth.state';
-import { AuthFacade } from './auth.facade';
+import { AuthReducer } from './auth.reducer';
 
 
 @NgModule({
   providers: [
     AuthService,
     AuthState,
-    AuthFacade,
+    AuthReducer,
   ],
   imports: [
     CommonModule,

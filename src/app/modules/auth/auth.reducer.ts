@@ -3,30 +3,32 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthState } from './state/auth.state';
 import { User } from './models/user.model';
 import { Observable } from 'rxjs';
+import { Token } from './models/token.model';
+import { Router } from '@angular/router';
 
 
 @Injectable()
-export class AuthFacade {
+export class AuthReducer {
   public constructor(
     private readonly authService: AuthService,
     private readonly authState: AuthState,
+    private readonly router: Router,
   ) { }
 
   public signIn(username: string, password: string): void {
     this.authState.setIsProcessing(true);
     this.authState.setSignInErrors([]);
-
     this.authService
       .signIn(username, password)
       .subscribe(
-        (user) => {
-          console.log('User logged in!', user);
+        (token) => {
           this.authState.setIsProcessing(false);
-          this.authState.setUser(user);
+          this.authState.setToken(token);
+          this.router.navigate(['/dashboard']);
         },
         (error) => {
-          this.authState.setSignInErrors([error]);
           this.authState.setIsProcessing(false);
+          this.authState.setSignInErrors([error.message]);
         }
       );
   }
@@ -37,8 +39,25 @@ export class AuthFacade {
       .signOut()
       .subscribe(() => {
         this.authState.setIsProcessing(false);
+        this.authState.setToken(null);
         this.authState.setUser(null);
+        this.router.navigate(['/']);
       });
+  }
+
+  public getUserData(): void {
+    this.authState.setIsProcessing(true);
+    this.authService
+      .getUserData()
+      .subscribe(
+        (user) => {
+          this.authState.setIsProcessing(false);
+          this.authState.setUser(user);
+        },
+        (error) => {
+          this.authState.setIsProcessing(false);
+        }
+      );
   }
 
   public isProcessing$(): Observable<boolean> {
@@ -47,6 +66,10 @@ export class AuthFacade {
 
   public getUser$(): Observable<User> {
     return this.authState.getUser$();
+  }
+
+  public getToken$(): Observable<Token> {
+    return this.authState.getToken$();
   }
 
   public getSignInErrors$(): Observable<string[]> {

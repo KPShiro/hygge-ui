@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<h4 *ngIf="(user$ | async); let user">
+  Logged as: {{ user.firstName }} {{ user.lastName }}
+</h4>
+
+<button (click)="signOut()" [disabled]="(isProcessing$ | async)">
+  Sign out
+</button>

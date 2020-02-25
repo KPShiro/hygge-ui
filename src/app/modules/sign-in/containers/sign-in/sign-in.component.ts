@@ -1,10 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthFacade } from '@modules/auth/auth.facade';
-import { Observable, Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { User } from '@modules/auth/models/user.model';
-import { filter, takeUntil } from 'rxjs/operators';
-import { isNullOrUndefined } from 'util';
+import { Component, OnInit } from '@angular/core';
+import { AuthReducer } from '@modules/auth/auth.reducer';
+import { Observable } from 'rxjs';
+import { Token } from '@modules/auth/models/token.model';
 
 
 @Component({
@@ -12,41 +9,27 @@ import { isNullOrUndefined } from 'util';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent implements OnInit {
 
-  private unsubscribe: Subject<any> = new Subject();
-
-  public user$!: Observable<User>;
   public isProcessing$!: Observable<boolean>;
   public errors$!: Observable<string[]>;
+  public token$!: Observable<Token>;
 
   public constructor(
-    private readonly authFacade: AuthFacade,
-    private readonly router: Router,
+    private readonly authReducer: AuthReducer,
   ) { }
 
   ngOnInit(): void {
-    this.isProcessing$ = this.authFacade.isProcessing$();
-    this.errors$ = this.authFacade.getSignInErrors$();
-    this.user$ = this.authFacade.getUser$();
-
-    this.user$.pipe(
-      takeUntil(this.unsubscribe),
-      filter((user) => !isNullOrUndefined(user)),
-    ).subscribe(() => this.router.navigate(['/dashboard']));
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.isProcessing$ = this.authReducer.isProcessing$();
+    this.errors$ = this.authReducer.getSignInErrors$();
+    this.token$ = this.authReducer.getToken$();
   }
 
   public signIn(): void {
-    this.authFacade.signIn('user@app.com', 'test');
+    this.authReducer.signIn('user@app.com', 'test');
   }
 
   public fakeSignIn(): void {
-    this.authFacade.signIn('user@app.com', 'test123');
+    this.authReducer.signIn('user@app.com', 'test123');
   }
-
 }
