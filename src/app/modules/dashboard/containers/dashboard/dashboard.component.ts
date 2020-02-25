@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthReducer } from '@modules/auth/auth.reducer';
+import { AuthFacade } from '@modules/auth/auth.facade';
 import { Observable } from 'rxjs';
 import { User } from '@modules/auth/models/user.model';
 
@@ -15,18 +15,18 @@ export class DashboardComponent implements OnInit {
   public user$!: Observable<User>;
 
   constructor(
-    private readonly authReducer: AuthReducer,
+    private readonly authFacade: AuthFacade,
   ) { }
 
   ngOnInit() {
-    this.isProcessing$ = this.authReducer.isProcessing$();
-    this.user$ = this.authReducer.getUser$();
+    this.isProcessing$ = this.authFacade.isProcessing$();
+    this.user$ = this.authFacade.getUser$();
 
-    this.authReducer.getUserData();
+    this.authFacade.getUserData();
   }
 
   public signOut(): void {
-    this.authReducer.signOut();
+    this.authFacade.signOut();
   }
 
 }

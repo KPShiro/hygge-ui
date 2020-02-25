@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 
 @Injectable()
-export class AuthReducer {
+export class AuthFacade {
   public constructor(
     private readonly authService: AuthService,
     private readonly authState: AuthState,

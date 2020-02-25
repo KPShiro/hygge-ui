@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthReducer } from '@modules/auth/auth.reducer';
+import { AuthFacade } from '@modules/auth/auth.facade';
 import { Observable } from 'rxjs';
 import { Token } from '@modules/auth/models/token.model';
 
@@ -16,20 +16,20 @@ export class SignInComponent implements OnInit {
   public token$!: Observable<Token>;
 
   public constructor(
-    private readonly authReducer: AuthReducer,
+    private readonly authFacade: AuthFacade,
   ) { }
 
   ngOnInit(): void {
-    this.isProcessing$ = this.authReducer.isProcessing$();
-    this.errors$ = this.authReducer.getSignInErrors$();
-    this.token$ = this.authReducer.getToken$();
+    this.isProcessing$ = this.authFacade.isProcessing$();
+    this.errors$ = this.authFacade.getSignInErrors$();
+    this.token$ = this.authFacade.getToken$();
   }
 
   public signIn(): void {
-    this.authReducer.signIn('user@app.com', 'test');
+    this.authFacade.signIn('user@app.com', 'test');
   }
 
   public fakeSignIn(): void {
-    this.authReducer.signIn('user@app.com', 'test123');
+    this.authFacade.signIn('user@app.com', 'test123');
   }
 }
