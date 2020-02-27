@@ -10,14 +10,9 @@ export class AuthState {
   private readonly _user: BehaviorSubject<User> = new BehaviorSubject(null);
   private readonly _token: BehaviorSubject<Token> = new BehaviorSubject(null);
   private readonly _signInErrors: BehaviorSubject<string[]> = new BehaviorSubject([]);
-  private readonly _isProcessing: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public constructor() {
     this.readFromCache('token', this.setToken.bind(this));
-  }
-
-  public isProcessing$(): Observable<boolean> {
-    return this._isProcessing.asObservable();
   }
 
   public getUser$(): Observable<User> {
@@ -30,10 +25,6 @@ export class AuthState {
 
   public getSignInErrors$(): Observable<string[]> {
     return this._signInErrors.asObservable();
-  }
-
-  public setIsProcessing(value: boolean): void {
-    this._isProcessing.next(value);
   }
 
   public setUser(user: User): void {

@@ -5,40 +5,42 @@ import { User } from './models/user.model';
 import { Observable } from 'rxjs';
 import { Token } from './models/token.model';
 import { Router } from '@angular/router';
+import { SharedFacade } from '@modules/shared/shared.facade';
 
 
 @Injectable()
 export class AuthFacade {
   public constructor(
+    private readonly sharedFacade: SharedFacade,
     private readonly authService: AuthService,
     private readonly authState: AuthState,
     private readonly router: Router,
   ) { }
 
   public signIn(username: string, password: string): void {
-    this.authState.setIsProcessing(true);
+    this.sharedFacade.setIsProcessing(true);
     this.authState.setSignInErrors([]);
     this.authService
       .signIn(username, password)
       .subscribe(
         (token) => {
-          this.authState.setIsProcessing(false);
+          this.sharedFacade.setIsProcessing(false);
           this.authState.setToken(token);
           this.router.navigate(['/dashboard']);
         },
         (error) => {
-          this.authState.setIsProcessing(false);
+          this.sharedFacade.setIsProcessing(false);
           this.authState.setSignInErrors([error.message]);
         }
       );
   }
 
   public signOut(): void {
-    this.authState.setIsProcessing(true);
+    this.sharedFacade.setIsProcessing(true);
     this.authService
       .signOut()
       .subscribe(() => {
-        this.authState.setIsProcessing(false);
+        this.sharedFacade.setIsProcessing(false);
         this.authState.setToken(null);
         this.authState.setUser(null);
         this.router.navigate(['/']);
@@ -46,22 +48,22 @@ export class AuthFacade {
   }
 
   public getUserData(): void {
-    this.authState.setIsProcessing(true);
+    this.sharedFacade.setIsProcessing(true);
     this.authService
       .getUserData()
       .subscribe(
         (user) => {
-          this.authState.setIsProcessing(false);
+          this.sharedFacade.setIsProcessing(false);
           this.authState.setUser(user);
         },
         (error) => {
-          this.authState.setIsProcessing(false);
+          this.sharedFacade.setIsProcessing(false);
         }
       );
   }
 
   public isProcessing$(): Observable<boolean> {
-    return this.authState.isProcessing$();
+    return this.sharedFacade.isProcessing$;
   }
 
   public getUser$(): Observable<User> {
