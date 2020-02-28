@@ -23,6 +23,16 @@ export class AuthState {
     return this._token.asObservable();
   }
 
+  public getAuthTokenValue(): string | null {
+    const token: Token | null = this._token.getValue();
+    
+    if (isNullOrUndefined(token)) {
+      return null;
+    }    
+
+    return token.accessToken;
+  }
+
   public getSignInErrors$(): Observable<string[]> {
     return this._signInErrors.asObservable();
   }

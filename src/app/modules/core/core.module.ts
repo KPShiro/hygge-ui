@@ -2,6 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
 
 
 @NgModule({
@@ -12,6 +13,11 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHeaderInterceptor,
       multi: true,
     },
   ],

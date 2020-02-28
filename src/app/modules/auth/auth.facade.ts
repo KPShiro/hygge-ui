@@ -5,7 +5,6 @@ import { User } from './models/user.model';
 import { Observable } from 'rxjs';
 import { Token } from './models/token.model';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable()
@@ -20,16 +19,10 @@ export class AuthFacade {
     this.authState.setSignInErrors([]);
     this.authService
       .signIn(username, password)
-      .subscribe(
-        (token) => {
-          this.authState.setToken(token);
-          this.router.navigate(['/dashboard']);
-        },
-        (error: HttpErrorResponse) => {
-          // console.log(error);
-          // this.authState.setSignInErrors([error.message]);
-        }
-      );
+      .subscribe((token) => {
+        this.authState.setToken(token);
+        this.router.navigate(['/dashboard']);
+      });
   }
 
   public signOut(): void {
@@ -45,13 +38,9 @@ export class AuthFacade {
   public getUserData(): void {
     this.authService
       .getUserData()
-      .subscribe(
-        (user) => {
-          this.authState.setUser(user);
-        },
-        (error) => {
-        }
-      );
+      .subscribe((user) => {
+        this.authState.setUser(user);
+      });
   }
 
   public getUser$(): Observable<User> {
@@ -64,5 +53,9 @@ export class AuthFacade {
 
   public getSignInErrors$(): Observable<string[]> {
     return this.authState.getSignInErrors$();
+  }
+
+  public getAuthTokenValue(): string | null {
+    return this.authState.getAuthTokenValue();
   }
 }
