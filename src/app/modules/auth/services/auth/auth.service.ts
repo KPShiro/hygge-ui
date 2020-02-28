@@ -5,6 +5,7 @@ import { delay, catchError, map } from 'rxjs/operators';
 import { User } from '../../models/user.model';
 import { Token } from '../../models/token.model';
 import { isNullOrUndefined } from 'util';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -18,23 +19,14 @@ export class AuthService {
     email: 'user@app.com',
   };
 
-  private readonly TEST_TOKEN: Token = {
-    accessToken: 'TEST_ACCESS_TOKEN',
-    refreshToken: 'TEST_REFRESH_TOKEN',
-  };
-
   public constructor(
     private readonly httpClient: HttpClient,
   ) { }
 
   public signIn(username: string, password: string): Observable<Token> {
-    let token: Token | null = null;
+    const url = `${environment.api.auth.url}${environment.api.auth.endpoints.login}`;
 
-    if (username === this.TEST_USER.email && password === 'test') {
-      token = this.TEST_TOKEN;
-    }
-
-    return of(token).pipe(
+    return this.httpClient.post<Token>(url, { body: { username, password } }).pipe(
       catchError((error) => throwError(error)),
       delay(this.TEST_DELAY),
       map((token) => {
