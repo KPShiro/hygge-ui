@@ -5,6 +5,7 @@ import { AppComponent } from '@containers/app/app.component';
 import { CoreModule } from '@modules/core/core.module';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { AuthModule } from '@modules/auth/auth.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { AuthModule } from '@modules/auth/auth.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     CoreModule,
     AuthModule,
   ],
