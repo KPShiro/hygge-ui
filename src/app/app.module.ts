@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from '@containers/app/app.component';
+import { AppComponent } from '@modules/core/containers/app/app.component';
 import { CoreModule } from '@modules/core/core.module';
-import { NotFoundComponent } from './containers/not-found/not-found.component';
+import { NotFoundComponent } from './modules/core/containers/not-found/not-found.component';
 import { AuthModule } from '@modules/auth/auth.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppLoaderComponent } from './containers/app-loader/app-loader.component';
+import { AppLoaderComponent } from './modules/core/containers/app-loader/app-loader.component';
+import { SharedModule } from '@modules/shared/shared.module';
 
 
 @NgModule({
@@ -20,8 +21,9 @@ import { AppLoaderComponent } from './containers/app-loader/app-loader.component
     AppRoutingModule,
     NgbModule,
     CoreModule,
-    AuthModule,
+    AuthModule.forRoot(),
+    SharedModule.forRoot(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],  
 })
 export class AppModule { }

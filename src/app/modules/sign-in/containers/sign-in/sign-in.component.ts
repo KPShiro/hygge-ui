@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthFacade } from '@modules/auth/auth.facade';
 import { Observable } from 'rxjs';
 import { Token } from '@modules/auth/models/token.model';
+import { SharedFacade } from '@modules/shared/shared.facade';
 
 
 @Component({
@@ -16,11 +17,12 @@ export class SignInComponent implements OnInit {
   public token$!: Observable<Token>;
 
   public constructor(
+    private readonly sharedFacade: SharedFacade,
     private readonly authFacade: AuthFacade,
   ) { }
 
   ngOnInit(): void {
-    this.isProcessing$ = this.authFacade.isProcessing$();
+    this.isProcessing$ = this.sharedFacade.isProcessing$;
     this.errors$ = this.authFacade.getSignInErrors$();
     this.token$ = this.authFacade.getToken$();
   }

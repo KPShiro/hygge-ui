@@ -4,7 +4,6 @@ import { of, Observable, throwError } from 'rxjs';
 import { delay, catchError, map } from 'rxjs/operators';
 import { User } from '../../models/user.model';
 import { Token } from '../../models/token.model';
-import { isNullOrUndefined } from 'util';
 import { environment } from 'src/environments/environment';
 
 
@@ -24,19 +23,9 @@ export class AuthService {
   ) { }
 
   public signIn(username: string, password: string): Observable<Token> {
-    const url = `${environment.api.auth.url}${environment.api.auth.endpoints.login}`;
+    const url: string = `${environment.api.auth.url}${environment.api.auth.endpoints.login}`;
 
-    return this.httpClient.post<Token>(url, { body: { username, password } }).pipe(
-      catchError((error) => throwError(error)),
-      delay(this.TEST_DELAY),
-      map((token) => {
-        if (isNullOrUndefined(token)) {
-          throw new Error('Combination of username and password is not valid');
-        }
-
-        return token;
-      }),
-    );
+    return this.httpClient.post<Token>(url, { username, password });
   }
 
   public getUserData(): Observable<User> {
@@ -47,8 +36,8 @@ export class AuthService {
   }
 
   public signOut(): Observable<any> {
-    return of(null).pipe(
-      delay(this.TEST_DELAY),
-    );
+    const url: string = `${environment.api.auth.url}${environment.api.auth.endpoints.logout}`;
+
+    return this.httpClient.get(url);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthFacade } from '@modules/auth/auth.facade';
 import { Observable } from 'rxjs';
 import { User } from '@modules/auth/models/user.model';
+import { SharedFacade } from '@modules/shared/shared.facade';
 
 
 @Component({
@@ -15,11 +16,12 @@ export class DashboardComponent implements OnInit {
   public user$!: Observable<User>;
 
   constructor(
+    private readonly sharedFacade: SharedFacade,
     private readonly authFacade: AuthFacade,
   ) { }
 
   ngOnInit() {
-    this.isProcessing$ = this.authFacade.isProcessing$();
+    this.isProcessing$ = this.sharedFacade.isProcessing$;
     this.user$ = this.authFacade.getUser$();
 
     this.authFacade.getUserData();
