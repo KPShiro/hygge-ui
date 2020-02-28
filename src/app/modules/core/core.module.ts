@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
+import { SharedModule } from '@modules/shared/shared.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
   ],
   providers: [
     {
