@@ -5,13 +5,15 @@ import { AppComponent } from '@containers/app/app.component';
 import { CoreModule } from '@modules/core/core.module';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { AuthModule } from '@modules/auth/auth.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppLoaderComponent } from './containers/app-loader/app-loader.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
+    AppLoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CoreModule,
     AuthModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
