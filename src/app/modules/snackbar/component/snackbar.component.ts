@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
 
 
 @Component({
@@ -8,11 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SnackbarComponent implements OnInit {
 
-  @Input() message: string = "HARDCODED SNACKBAR MESSAGE";
+  @Input() public message!: string;
 
-  constructor() { }
+  constructor(
+    @Inject(SNACKBAR_CONFIG) public readonly config: SnackbarConfig,
+  ) { }
 
   ngOnInit() {
+    console.log(this.config);
   }
 
 }

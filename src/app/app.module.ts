@@ -5,9 +5,9 @@ import { AppComponent } from '@modules/core/containers/app/app.component';
 import { CoreModule } from '@modules/core/core.module';
 import { NotFoundComponent } from './modules/core/containers/not-found/not-found.component';
 import { AuthModule } from '@modules/auth/auth.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppLoaderComponent } from './modules/core/containers/app-loader/app-loader.component';
 import { SharedModule } from '@modules/shared/shared.module';
+import { SnackbarModule } from '@modules/snackbar/snackbar.module';
 
 
 @NgModule({
@@ -19,11 +19,11 @@ import { SharedModule } from '@modules/shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     CoreModule,
     AuthModule.forRoot(),
     SharedModule.forRoot(),
+    SnackbarModule.forRoot(),
   ],
-  bootstrap: [AppComponent],  
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

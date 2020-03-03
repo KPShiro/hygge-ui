@@ -12,6 +12,7 @@ import { Injectable } from '@angular/core';
 import { SharedFacade } from '@modules/shared/shared.facade';
 import { SnackbarService } from '@modules/snackbar/services/snackbar.service';
 
+
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -27,18 +28,18 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((response: HttpErrorResponse) => {
-                    // let errorMessage = '';
+                    let errorMessage = '';
 
-                    // if (response.error instanceof ErrorEvent) {
-                    //     // client-side error
-                    //     errorMessage = `Error: ${response.error.message}`;
-                    // } else {
-                    //     // server-side error
-                    //     errorMessage = `Error Code: ${response.status}\nMessage: ${response.message}`;
-                    // }
+                    if (response.error instanceof ErrorEvent) {
+                        // client-side error
+                        errorMessage = response.error.message;
+                    } else {
+                        // server-side error
+                        errorMessage = response.message;
+                    }
 
-                    this.snackbar.open(response.message);
-                    
+                    this.snackbar.open(errorMessage);
+
                     if (response.status === 401) {
                         this.router.navigate(['/sign-in']);
                     }
