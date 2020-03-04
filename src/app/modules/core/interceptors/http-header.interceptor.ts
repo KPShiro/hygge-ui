@@ -23,7 +23,7 @@ export class HttpHeaderInterceptor implements HttpInterceptor {
         if (!isNullOrUndefined(token)) {
             request = request.clone({
                 setHeaders: {
-                    'Authorization': `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                 },
             });
         }

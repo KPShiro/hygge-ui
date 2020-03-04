@@ -47,7 +47,7 @@ export class SnackbarService {
     this._componentRef = this.createComponentRef();
     this._componentRef.instance.message = message;
 
-    let snackbarTimeout$: NodeJS.Timer = null;
+    let snackbarTimeout$: any = null;
 
     const afterOpeningEvent$ = this._componentRef.instance.afterOpening.subscribe(() => {
       snackbarTimeout$ = setTimeout(() => {

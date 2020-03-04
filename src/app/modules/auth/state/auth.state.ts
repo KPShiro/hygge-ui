@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Token } from '../models/token.model';
@@ -25,10 +25,10 @@ export class AuthState {
 
   public getAuthTokenValue(): string | null {
     const token: Token | null = this._token.getValue();
-    
+
     if (isNullOrUndefined(token)) {
       return null;
-    }    
+    }
 
     return token.accessToken;
   }

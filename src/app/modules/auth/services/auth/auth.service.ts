@@ -23,7 +23,7 @@ export class AuthService {
   ) { }
 
   public signIn(username: string, password: string): Observable<Token> {
-    const url: string = `${environment.api.auth.url}${environment.api.auth.endpoints.login}`;
+    const url = `${environment.api.auth.url}${environment.api.auth.endpoints.login}`;
 
     return this.httpClient.post<Token>(url, { username, password });
   }
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   public signOut(): Observable<any> {
-    const url: string = `${environment.api.auth.url}${environment.api.auth.endpoints.logout}`;
+    const url = `${environment.api.auth.url}${environment.api.auth.endpoints.logout}`;
 
     return this.httpClient.get(url);
   }

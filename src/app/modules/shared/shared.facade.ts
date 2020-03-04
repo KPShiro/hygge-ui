@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { SharedState } from './state/shared.state';
 import { Observable } from 'rxjs';
 

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { AuthState } from './state/auth.state';
 import { User } from './models/user.model';
