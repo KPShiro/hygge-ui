@@ -1,4 +1,4 @@
-import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, ComponentRef, Inject } from '@angular/core';
+import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, ComponentRef, Inject } from '@angular/core';
 import { SnackbarComponent } from '../component/snackbar.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { isNullOrUndefined } from 'util';
