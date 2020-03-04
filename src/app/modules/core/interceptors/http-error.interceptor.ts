@@ -1,16 +1,10 @@
-import {
-    HttpEvent,
-    HttpInterceptor,
-    HttpHandler,
-    HttpRequest,
-    HttpErrorResponse,
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedFacade } from '@modules/shared/shared.facade';
 import { SnackbarService } from '@modules/snackbar/services/snackbar.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 
 
 @Injectable()
@@ -28,17 +22,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((response: HttpErrorResponse) => {
-                    let errorMessage = '';
-
-                    if (response.error instanceof ErrorEvent) {
-                        // client-side error
-                        errorMessage = response.error.message;
-                    } else {
-                        // server-side error
-                        errorMessage = response.message;
-                    }
-
-                    this.snackbar.open(errorMessage);
+                    this.snackbar.open(response.error.message);
 
                     if (response.status === 401) {
                         this.router.navigate(['/sign-in']);
