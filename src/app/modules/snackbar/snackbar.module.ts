@@ -25,8 +25,7 @@ export class SnackbarModule {
   }
 
   public static forRoot(config?: SnackbarConfig): ModuleWithProviders {
-
-    const snackbarModule: ModuleWithProviders = {
+    return {
       ngModule: SnackbarModule,
       providers: [
         SnackbarService,
@@ -39,7 +38,5 @@ export class SnackbarModule {
         },
       ],
     };
-
-    return snackbarModule;
   }
 }
