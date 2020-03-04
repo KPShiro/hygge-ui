@@ -35,7 +35,11 @@ export class SnackbarService {
       });
   }
 
-  public open(message: string, onClose?: () => void): ComponentRef<SnackbarComponent> {
+  public open(message: string, afterClosing?: () => void, afterOpening?: () => void): ComponentRef<SnackbarComponent> {
+    if (!isNullOrUndefined(this._componentRef)) {
+      this.close();
+    }
+
     if (isNullOrUndefined(message) || message === '') {
       return;
     }
@@ -43,20 +47,30 @@ export class SnackbarService {
     this._componentRef = this.createComponentRef();
     this._componentRef.instance.message = message;
 
-    const onCloseEvent$ = this._componentRef.instance.onClose.subscribe(() => {
-      if (!isNullOrUndefined(onClose)) {
-        onClose();
+    let snackbarTimeout$: NodeJS.Timer = null;
+
+    const afterOpeningEvent$ = this._componentRef.instance.afterOpening.subscribe(() => {
+      snackbarTimeout$ = setTimeout(() => {
+        this._componentRef.instance.close();
+      }, this.config.timeout);
+
+      if (!isNullOrUndefined(afterOpening)) {
+        afterOpening();
       }
     });
 
-    // const timeout$ = setTimeout(() => {
-    //   this._componentRef.instance.hide();
-    //   this.close();
-    // }, this.config.timeout);
+    const afterClosingEvent$ = this._componentRef.instance.afterClosing.subscribe(() => {
+      this.close();
+
+      if (!isNullOrUndefined(afterClosing)) {
+        afterClosing();
+      }
+    });
 
     this._componentRef.onDestroy(() => {
-      onCloseEvent$.unsubscribe();
-      // clearTimeout(timeout$);
+      afterOpeningEvent$.unsubscribe();
+      afterClosingEvent$.unsubscribe();
+      clearTimeout(snackbarTimeout$);
     });
 
     this.addElementToDOM(this._componentRef);
@@ -80,7 +94,6 @@ export class SnackbarService {
   }
 
   private addElementToDOM(componentRef: ComponentRef<SnackbarComponent>): void {
-    // const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     const { nativeElement } = componentRef.location;
     document.body.appendChild(nativeElement);
   }

@@ -1,4 +1,4 @@
-import { Component, Input, Inject, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, Input, Inject, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
 
 
@@ -10,7 +10,11 @@ import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
 export class SnackbarComponent {
 
   @Input() public message!: string;
-  @Output() public onClose: EventEmitter<void> = new EventEmitter();
+
+  @Output() public afterOpening: EventEmitter<void> = new EventEmitter();
+  @Output() public afterClosing: EventEmitter<void> = new EventEmitter();
+
+  @ViewChild('snackbarWrapper', { static: false }) public snackbarWrapper: ElementRef;
 
   constructor(
     @Inject(SNACKBAR_CONFIG) public readonly config: SnackbarConfig,
@@ -18,13 +22,16 @@ export class SnackbarComponent {
 
   public animationDone(event: AnimationEvent): void {
     if (event.animationName === 'snackbarIn') {
-      console.log('snackbarIn', 'Animation done!');
+      this.afterOpening.emit();
     }
 
     if (event.animationName === 'snackbarOut') {
-      console.log('snackbarOut', 'Animation done!');
-      this.onClose.emit();
+      this.afterClosing.emit();
     }
   }
 
+  public close(): void {
+    const snackbar = this.snackbarWrapper.nativeElement;
+    snackbar.style.animation = 'snackbarOut 0.3s';
+  }
 }
