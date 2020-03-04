@@ -1,6 +1,6 @@
-import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, ComponentRef, Inject, Optional } from '@angular/core';
+import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, ComponentRef, Inject } from '@angular/core';
 import { SnackbarComponent } from '../component/snackbar.component';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { filter } from 'rxjs/operators';
 import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
@@ -9,7 +9,7 @@ import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
 @Injectable()
 export class SnackbarService {
 
-  public snackbarComponentRef!: ComponentRef<SnackbarComponent>;
+  private _componentRef!: ComponentRef<SnackbarComponent>;
 
   public constructor(
     @Inject(SNACKBAR_CONFIG) private readonly config: SnackbarConfig,
@@ -17,7 +17,6 @@ export class SnackbarService {
     private readonly appRef: ApplicationRef,
     private readonly injector: Injector,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
   ) { }
 
   public init(): void {
@@ -27,48 +26,62 @@ export class SnackbarService {
       )
       .subscribe((event: NavigationEnd) => {
         const queryParams = this.router.parseUrl(event.urlAfterRedirects);
-        if (!isNullOrUndefined(queryParams.queryParams.snackbar)) {
-          this.open(queryParams.queryParams.snackbar);
+
+        if (isNullOrUndefined(queryParams.queryParams.snackbar)) {
+          return;
         }
+
+        this.open(queryParams.queryParams.snackbar);
       });
   }
 
-  public open(message: string): void {
+  public open(message: string, onClose?: () => void): ComponentRef<SnackbarComponent> {
     if (isNullOrUndefined(message) || message === '') {
       return;
     }
 
-    this.addQueryParamToUrl(message);
-    this.addElementToDOM(message);
+    this._componentRef = this.createComponentRef();
+    this._componentRef.instance.message = message;
 
-    setTimeout(() => this.close(), this.config.timeout);
+    const onCloseEvent$ = this._componentRef.instance.onClose.subscribe(() => {
+      if (!isNullOrUndefined(onClose)) {
+        onClose();
+      }
+    });
+
+    // const timeout$ = setTimeout(() => {
+    //   this._componentRef.instance.hide();
+    //   this.close();
+    // }, this.config.timeout);
+
+    this._componentRef.onDestroy(() => {
+      onCloseEvent$.unsubscribe();
+      // clearTimeout(timeout$);
+    });
+
+    this.addElementToDOM(this._componentRef);
+
+    return this._componentRef;
   }
 
   public close(): void {
-    this.appRef.detachView(this.snackbarComponentRef.hostView);
-    this.snackbarComponentRef.destroy();
+    this.appRef.detachView(this._componentRef.hostView);
+    this._componentRef.destroy();
   }
 
-  private addElementToDOM(message: string): void {
+  private createComponentRef(): ComponentRef<SnackbarComponent> {
     const factory = this.factoryResolver.resolveComponentFactory(SnackbarComponent);
     const componentRef = factory.create(this.injector);
-    componentRef.instance.message = message;
 
     this.appRef.attachView(componentRef.hostView);
+    componentRef.hostView.detectChanges();
 
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    document.body.appendChild(domElem);
-
-    this.snackbarComponentRef = componentRef;
+    return componentRef;
   }
 
-  private addQueryParamToUrl(message: string): void {
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        snackbar: message,
-      },
-      queryParamsHandling: 'merge',
-    });
+  private addElementToDOM(componentRef: ComponentRef<SnackbarComponent>): void {
+    // const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const { nativeElement } = componentRef.location;
+    document.body.appendChild(nativeElement);
   }
 }

@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export interface SnackbarConfig {
-    timeout: number;
+    timeout?: number;
     snackbarClass?: string;
 }
 

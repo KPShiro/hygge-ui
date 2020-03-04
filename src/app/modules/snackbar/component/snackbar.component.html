@@ -1,5 +1,5 @@
-<div class="app-snackbar-wrapper {{ config.snackbarClass }}">
-    <div class="app-snackbar">
+<div #snackbarWrapper class="app-snackbar-wrapper" (animationend)="animationDone($event)">
+    <div class="app-snackbar {{ config.snackbarClass }}">
         <div class="message" [innerHTML]="message"></div>
     </div>
 </div>

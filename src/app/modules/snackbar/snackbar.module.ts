@@ -10,7 +10,7 @@ import { defaultSnacbarConfig, SNACKBAR_CONFIG, SnackbarConfig } from './snackba
     SnackbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   entryComponents: [
     SnackbarComponent,

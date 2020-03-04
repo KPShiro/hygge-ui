@@ -1,22 +1,30 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, Input, Inject, Output, EventEmitter, ElementRef } from '@angular/core';
 import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
 
 
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.scss']
+  styleUrls: ['./snackbar.component.scss'],
 })
-export class SnackbarComponent implements OnInit {
+export class SnackbarComponent {
 
   @Input() public message!: string;
+  @Output() public onClose: EventEmitter<void> = new EventEmitter();
 
   constructor(
     @Inject(SNACKBAR_CONFIG) public readonly config: SnackbarConfig,
   ) { }
 
-  ngOnInit() {
-    console.log(this.config);
+  public animationDone(event: AnimationEvent): void {
+    if (event.animationName === 'snackbarIn') {
+      console.log('snackbarIn', 'Animation done!');
+    }
+
+    if (event.animationName === 'snackbarOut') {
+      console.log('snackbarOut', 'Animation done!');
+      this.onClose.emit();
+    }
   }
 
 }
