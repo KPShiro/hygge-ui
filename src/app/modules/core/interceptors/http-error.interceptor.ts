@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedFacade } from '@modules/shared/shared.facade';
 import { SnackbarService } from '@modules/snackbar/services/snackbar.service';
-import { Observable, throwError } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 
@@ -28,7 +28,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         this.router.navigate(['/sign-in']);
                     }
 
-                    return throwError(response);
+                    return EMPTY;
                 }),
                 finalize(() => this.sharedFacade.setIsProcessing(false)),
             );
