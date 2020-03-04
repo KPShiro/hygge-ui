@@ -1,0 +1,16 @@
+@import "./variables";
+
+.hg-btn,
+button {
+  cursor: pointer;
+  padding: $hg-btn-padding-y $hg-btn-padding-x;
+  border-radius: $hg-btn-border-radius;
+  border: $hg-btn-border-weight solid transparent;
+  font-weight: $hg-btn-font-weight;
+  font-size: $hg-btn-font-size;
+  box-shadow: none;
+  transition: all ease-in-out 0.2s;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
