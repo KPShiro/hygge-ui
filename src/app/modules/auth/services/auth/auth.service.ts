@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable, throwError } from 'rxjs';
-import { delay, catchError, map } from 'rxjs/operators';
+import { delay, catchError } from 'rxjs/operators';
 import { User } from '../../models/user.model';
 import { Token } from '../../models/token.model';
 import { environment } from 'src/environments/environment';
