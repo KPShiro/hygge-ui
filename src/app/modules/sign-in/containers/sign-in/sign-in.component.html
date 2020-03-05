@@ -2,11 +2,17 @@
   Hygge
 </h1>
 
-<div>
-  <button type="button" class="btn" (click)="signIn()" [disabled]="(isProcessing$ | async)">
+<form [formGroup]="signInForm">
+  <div>
+    <input type="email" placeholder="user@company.com" formControlName="username">
+  </div>
+  <div>
+    <input type="password" placeholder="*************" formControlName="password">
+  </div>
+  <button type="submit" class="btn" (click)="signIn()" [disabled]="(isProcessing$ | async)">
     Sign in
   </button>
-</div>
+</form>
 
 <ul *ngIf="(errors$ | async); let errors">
   <li *ngFor="let error of errors">{{ error }}</li>
