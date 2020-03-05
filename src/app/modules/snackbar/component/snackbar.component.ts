@@ -1,5 +1,6 @@
 import { Component, Input, Inject, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
+import { SnackbarType } from '../enums/snackbar-type.enum';
 
 
 @Component({
@@ -10,11 +11,12 @@ import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
 export class SnackbarComponent {
 
   @Input() public message!: string;
+  @Input() public type: SnackbarType = SnackbarType.INFO;
 
   @Output() public afterOpening: EventEmitter<void> = new EventEmitter();
   @Output() public afterClosing: EventEmitter<void> = new EventEmitter();
 
-  @ViewChild('snackbarWrapper', { static: false }) public snackbarWrapper: ElementRef;
+  @ViewChild('snackbar', { static: false }) public snackbar: ElementRef;
 
   constructor(
     @Inject(SNACKBAR_CONFIG) public readonly config: SnackbarConfig,
@@ -31,7 +33,11 @@ export class SnackbarComponent {
   }
 
   public close(): void {
-    const snackbar = this.snackbarWrapper.nativeElement;
+    const snackbar = this.snackbar.nativeElement;
     snackbar.style.animation = 'snackbarOut 0.3s';
+  }
+
+  public getSnackbarTypeClass(): string {
+    return `type-${this.type}`;
   }
 }

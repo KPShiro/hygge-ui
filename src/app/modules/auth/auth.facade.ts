@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { AuthState } from './state/auth.state';
 import { User } from './models/user.model';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { Token } from './models/token.model';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable()
@@ -19,6 +20,13 @@ export class AuthFacade {
     this.authState.setSignInErrors([]);
     this.authService
       .signIn(username, password)
+      .pipe(
+        catchError((errorResponse) => {
+          this.authState.setSignInErrors([errorResponse.error.message]);
+
+          return EMPTY;
+        }),
+      )
       .subscribe((token) => {
         this.authState.setToken(token);
         this.router.navigate(['/dashboard']);

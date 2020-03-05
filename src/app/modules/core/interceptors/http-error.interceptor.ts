@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedFacade } from '@modules/shared/shared.facade';
 import { SnackbarService } from '@modules/snackbar/services/snackbar.service';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, throwError, EMPTY } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
+import { SnackbarType } from '@modules/snackbar/enums/snackbar-type.enum';
 
 
 @Injectable()
@@ -22,13 +23,22 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((response: HttpErrorResponse) => {
-                    this.snackbar.open(response.error.message);
+                    if (response.status === 0) {
+                        this.snackbar.open('Our services might be temporarily unavailable... Please come back later and try again.', SnackbarType.ERROR);
+                        return EMPTY;
+                    }
 
                     if (response.status === 401) {
                         this.router.navigate(['/sign-in']);
+                        return EMPTY;
                     }
 
-                    return EMPTY;
+                    if (response.status === 500) {
+                        this.snackbar.open('Oops something went wrong... Please contact support: (+48) 123 456 789', SnackbarType.ERROR);
+                        return EMPTY;
+                    }
+
+                    return throwError(response);
                 }),
                 finalize(() => this.sharedFacade.setIsProcessing(false)),
             );
