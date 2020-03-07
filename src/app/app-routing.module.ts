@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('@modules/sign-in/sign-in.module').then((m) => m.SignInModule),
   },
   {
+    path: 'sign-up',
+    loadChildren: () => import('@modules/sign-up/sign-up.module').then((m) => m.SignUpModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/sign-in',

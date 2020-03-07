@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="signUpForm" class="col-12 col-md-4" (submit)="createAccount()">
+            <h3 class="mb-4">Creating new account</h3>
+            <div formGroupName="personaForm" class="row">
+                <div class="form-group col-12">
+                    <label for="username">Username/Email *</label>
+                    <input id="username" class="form-control" type="email" placeholder="user@app.com"
+                        formControlName="username" aria-describedby="usernameHelp"
+                        [ngClass]="{ 'is-invalid': usernameControl.invalid }">
+                </div>
+            </div>
+            <div formGroupName="passwordForm" class="row">
+                <div class="form-group col-6 pr-2">
+                    <label for="password">Password *</label>
+                    <input id="password" class="form-control" type="password" placeholder="*********"
+                        formControlName="password"
+                        [ngClass]="{ 'is-invalid': confirmPasswordControl.hasError('passwordMatch') }">
+                </div>
+                <div class="form-group col-6 pl-0">
+                    <label for="confirmPassword">Confirm password *</label>
+                    <input id="confirmPassword" class="form-control" type="password" placeholder="*********"
+                        formControlName="confirmPassword"
+                        [ngClass]="{ 'is-invalid': confirmPasswordControl.hasError('passwordMatch') }">
+                </div>
+            </div>
+            <div formGroupName="personaForm" class="row">
+                <div class="form-group col-6 pr-2">
+                    <label for="firstName">First name *</label>
+                    <input id="firstName" class="form-control" type="text" placeholder="John"
+                        formControlName="firstName">
+                </div>
+                <div class="form-group col-6 pl-0">
+                    <label for="lastName">Last name *</label>
+                    <input id="lastName" class="form-control" type="text" placeholder="Garmandia"
+                        formControlName="lastName">
+                </div>
+            </div>
+            <div *ngIf="companyNameRequired" formGroupName="companyForm" class="row">
+                <div class="form-group col-12">
+                    <label for="companyName">Company name *</label>
+                    <input id="companyName" class="form-control" type="text" placeholder="Professional Corp."
+                        formControlName="companyName">
+                </div>
+            </div>
+            <div class="actions mt-5 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">
+                    Create
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
