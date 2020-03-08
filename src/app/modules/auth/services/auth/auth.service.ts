@@ -5,6 +5,7 @@ import { delay, catchError } from 'rxjs/operators';
 import { User } from '../../models/user.model';
 import { Token } from '../../models/token.model';
 import { environment } from 'src/environments/environment';
+import { ISignUpDto } from '@modules/auth/dtos/sign-up.dto';
 
 
 @Injectable()
@@ -39,5 +40,11 @@ export class AuthService {
     const url = `${environment.api.auth.url}${environment.api.auth.endpoints.logout}`;
 
     return this.httpClient.get(url);
+  }
+
+  public signUp(data: ISignUpDto): Observable<Token> {
+    const url = `${environment.api.auth.url}${environment.api.auth.endpoints.register}`;
+
+    return this.httpClient.post<Token>(url, data);
   }
 }

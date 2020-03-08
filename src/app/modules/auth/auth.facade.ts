@@ -6,6 +6,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { Token } from './models/token.model';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
+import { ISignUpDto } from './dtos/sign-up.dto';
 
 
 @Injectable()
@@ -15,6 +16,30 @@ export class AuthFacade {
     private readonly authState: AuthState,
     private readonly router: Router,
   ) { }
+
+  public getUser$(): Observable<User> {
+    return this.authState.getUser$();
+  }
+
+  public getToken$(): Observable<Token> {
+    return this.authState.getToken$();
+  }
+
+  public getSignInErrors$(): Observable<string[]> {
+    return this.authState.getSignInErrors$();
+  }
+
+  public getAuthTokenValue(): string | null {
+    return this.authState.getAuthTokenValue();
+  }
+
+  public getUserData(): void {
+    this.authService
+      .getUserData()
+      .subscribe((user) => {
+        this.authState.setUser(user);
+      });
+  }
 
   public signIn(username: string, password: string): void {
     this.authState.setSignInErrors([]);
@@ -43,27 +68,19 @@ export class AuthFacade {
       });
   }
 
-  public getUserData(): void {
+  public signUp(data: ISignUpDto): void {
     this.authService
-      .getUserData()
-      .subscribe((user) => {
-        this.authState.setUser(user);
+      .signUp(data)
+      .pipe(
+        catchError((errorResponse) => {
+          console.error(errorResponse);
+
+          return EMPTY;
+        }),
+      )
+      .subscribe((token) => {
+        this.authState.setToken(token);
+        this.router.navigate(['/dashboard']);
       });
-  }
-
-  public getUser$(): Observable<User> {
-    return this.authState.getUser$();
-  }
-
-  public getToken$(): Observable<Token> {
-    return this.authState.getToken$();
-  }
-
-  public getSignInErrors$(): Observable<string[]> {
-    return this.authState.getSignInErrors$();
-  }
-
-  public getAuthTokenValue(): string | null {
-    return this.authState.getAuthTokenValue();
   }
 }

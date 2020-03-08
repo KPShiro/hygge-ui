@@ -7,7 +7,10 @@
                     <label for="username">Username/Email *</label>
                     <input id="username" class="form-control" type="email" placeholder="user@app.com"
                         formControlName="username" aria-describedby="usernameHelp"
-                        [ngClass]="{ 'is-invalid': usernameControl.invalid }">
+                        [ngClass]="{ 'is-invalid': usernameControl.invalid && usernameControl.dirty }">
+                    <small class="text-danger" *ngIf="usernameControl.hasError('isTaken')">
+                        This username is already taken
+                    </small>
                 </div>
             </div>
             <div formGroupName="passwordForm" class="row">
@@ -15,32 +18,38 @@
                     <label for="password">Password *</label>
                     <input id="password" class="form-control" type="password" placeholder="*********"
                         formControlName="password"
-                        [ngClass]="{ 'is-invalid': confirmPasswordControl.hasError('passwordMatch') }">
+                        [ngClass]="{ 'is-invalid': passwordControl.invalid && passwordControl.touched }">
                 </div>
                 <div class="form-group col-6 pl-0">
                     <label for="confirmPassword">Confirm password *</label>
                     <input id="confirmPassword" class="form-control" type="password" placeholder="*********"
                         formControlName="confirmPassword"
-                        [ngClass]="{ 'is-invalid': confirmPasswordControl.hasError('passwordMatch') }">
+                        [ngClass]="{ 'is-invalid': confirmPasswordControl.invalid && confirmPasswordControl.touched }">
                 </div>
             </div>
             <div formGroupName="personaForm" class="row">
                 <div class="form-group col-6 pr-2">
                     <label for="firstName">First name *</label>
                     <input id="firstName" class="form-control" type="text" placeholder="John"
-                        formControlName="firstName">
+                        formControlName="firstName"
+                        [ngClass]="{ 'is-invalid': firstNameControl.invalid && firstNameControl.touched }">
                 </div>
                 <div class="form-group col-6 pl-0">
                     <label for="lastName">Last name *</label>
                     <input id="lastName" class="form-control" type="text" placeholder="Garmandia"
-                        formControlName="lastName">
+                        formControlName="lastName"
+                        [ngClass]="{ 'is-invalid': lastNameControl.invalid && lastNameControl.touched }">
                 </div>
             </div>
             <div *ngIf="companyNameRequired" formGroupName="companyForm" class="row">
                 <div class="form-group col-12">
                     <label for="companyName">Company name *</label>
                     <input id="companyName" class="form-control" type="text" placeholder="Professional Corp."
-                        formControlName="companyName">
+                        formControlName="companyName"
+                        [ngClass]="{ 'is-invalid': companyNameControl.invalid && companyNameControl.touched }">
+                    <small class="text-danger" *ngIf="companyNameControl.hasError('isTaken')">
+                        This company name is already in use
+                    </small>
                 </div>
             </div>
             <div class="actions mt-5 d-flex justify-content-end">
