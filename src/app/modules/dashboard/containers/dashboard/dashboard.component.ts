@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthFacade } from '@modules/auth/auth.facade';
+import { Component } from '@angular/core';
+import { UserFacade } from '@modules/user/services/user-facade/user-facade.service';
+import { IUserData } from '@modules/user/interfaces/user-data.interface';
 import { Observable } from 'rxjs';
-import { User } from '@modules/auth/models/user.model';
-import { SharedFacade } from '@modules/shared/shared.facade';
 
 
 @Component({
@@ -10,25 +9,16 @@ import { SharedFacade } from '@modules/shared/shared.facade';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  public isProcessing$!: Observable<boolean>;
-  public user$!: Observable<User>;
+  public user$: Observable<IUserData> = this._userFacade.userData$;
 
   constructor(
-    private readonly sharedFacade: SharedFacade,
-    private readonly authFacade: AuthFacade,
+    private readonly _userFacade: UserFacade,
   ) { }
 
-  ngOnInit() {
-    this.isProcessing$ = this.sharedFacade.isProcessing$;
-    this.user$ = this.authFacade.getUser$();
-
-    this.authFacade.getUserData();
-  }
-
   public signOut(): void {
-    this.authFacade.signOut();
+    this._userFacade.signOut();
   }
 
 }

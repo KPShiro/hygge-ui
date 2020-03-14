@@ -1,10 +1,9 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedFacade } from '@modules/shared/shared.facade';
 import { SnackbarService } from '@modules/snackbar/services/snackbar.service';
 import { Observable, throwError, EMPTY } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { SnackbarType } from '@modules/snackbar/enums/snackbar-type.enum';
 
 
@@ -12,14 +11,11 @@ import { SnackbarType } from '@modules/snackbar/enums/snackbar-type.enum';
 export class HttpErrorInterceptor implements HttpInterceptor {
 
     public constructor(
-        private readonly sharedFacade: SharedFacade,
         private readonly router: Router,
         private readonly snackbar: SnackbarService,
     ) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        this.sharedFacade.setIsProcessing(true);
-
         return next.handle(request)
             .pipe(
                 catchError((response: HttpErrorResponse) => {
@@ -40,7 +36,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
                     return throwError(response);
                 }),
-                finalize(() => this.sharedFacade.setIsProcessing(false)),
             );
     }
 }

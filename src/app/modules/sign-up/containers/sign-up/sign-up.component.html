@@ -7,7 +7,7 @@
                     <label for="username">Username/Email *</label>
                     <input id="username" class="form-control" type="email" placeholder="user@app.com"
                         formControlName="username" aria-describedby="usernameHelp"
-                        [ngClass]="{ 'is-invalid': usernameControl.invalid && usernameControl.dirty }">
+                        [ngClass]="{ 'is-invalid': usernameControl.invalid && usernameControl.touched, 'is-valid': usernameControl.valid && usernameControl.touched }">
                     <small class="text-danger" *ngIf="usernameControl.hasError('isTaken')">
                         This username is already taken
                     </small>
@@ -41,19 +41,8 @@
                         [ngClass]="{ 'is-invalid': lastNameControl.invalid && lastNameControl.touched }">
                 </div>
             </div>
-            <div *ngIf="companyNameRequired" formGroupName="companyForm" class="row">
-                <div class="form-group col-12">
-                    <label for="companyName">Company name *</label>
-                    <input id="companyName" class="form-control" type="text" placeholder="Professional Corp."
-                        formControlName="companyName"
-                        [ngClass]="{ 'is-invalid': companyNameControl.invalid && companyNameControl.touched }">
-                    <small class="text-danger" *ngIf="companyNameControl.hasError('isTaken')">
-                        This company name is already in use
-                    </small>
-                </div>
-            </div>
             <div class="actions mt-5 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">
+                <button type="submit" class="btn btn-primary" [disabled]="!isFormValid || ( isProcessing$ | async)">
                     Create
                 </button>
             </div>

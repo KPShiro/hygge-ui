@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PasswordMatch } from '@modules/sign-up/helpers/password-match-validator/password-match.validator';
-import { isNullOrUndefined } from 'util';
 import { SharedFacade } from '@modules/shared/shared.facade';
 import { Observable, Subject } from 'rxjs';
-import { AuthFacade } from '@modules/auth/auth.facade';
-import { ISignUpDto } from '@modules/auth/dtos/sign-up.dto';
 import { SignUpFacade } from '@modules/sign-up/sign-up.facade';
 import { AvailabilityValidators } from '@modules/sign-up/helpers/availability-validators/availability.validator';
 import { ActivatedRoute } from '@angular/router';
+import { UserFacade } from '@modules/user/services/user-facade/user-facade.service';
+import { ICreateUserDto } from '@modules/user/interfaces/create-user-dto.interface';
+import { IInvitationDetails } from '@modules/sign-up/models/invitation-details.model';
 
 
 @Component({
@@ -17,12 +17,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit, OnDestroy {
-
-  private readonly _destroy: Subject<void> = new Subject();
-
-  private passwordForm?: FormGroup;
-  private personaForm?: FormGroup;
-  private companyForm?: FormGroup;
 
   public signUpForm?: FormGroup;
   public isProcessing$?: Observable<boolean>;
@@ -47,29 +41,40 @@ export class SignUpComponent implements OnInit, OnDestroy {
     return this.passwordForm.get('password') as FormControl;
   }
 
-  public get companyNameControl(): FormControl {
-    return this.companyForm.get('companyName') as FormControl;
-  }
+  private readonly _destroy: Subject<void> = new Subject();
+  private invitationDetails?: IInvitationDetails;
+  private passwordForm?: FormGroup;
+  private personaForm?: FormGroup;
 
   public constructor(
+    private readonly route: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
     private readonly sharedFacade: SharedFacade,
-    private readonly authFacade: AuthFacade,
     private readonly signUpFacade: SignUpFacade,
-    private readonly route: ActivatedRoute,
+    private readonly _userFacade: UserFacade,
   ) { }
 
-  public get companyNameRequired(): boolean {
-    return isNullOrUndefined(this.companyNameControl.value);
+  public get isFormValid(): boolean {
+    const result: boolean =
+      this.usernameControl.valid &&
+      this.firstNameControl.valid &&
+      this.lastNameControl.valid &&
+      this.passwordControl.valid &&
+      this.confirmPasswordControl.valid;
+
+    return result;
   }
 
   public ngOnInit(): void {
+    this.invitationDetails = this.route.snapshot.data.invitationDetails;
     this.isProcessing$ = this.sharedFacade.isProcessing$;
     this.buildForm();
 
-    const invitationData = this.route.snapshot.data.invitationData;
-    this.usernameControl.setValue(invitationData.email);
-    this.companyNameControl.setValue(invitationData.companyName);
+    // TODO: This is a workaround... Find a way to trigger validation manually as updateValueAndValidity() does not work
+    setTimeout(() => {
+      this.usernameControl.setValue(this.invitationDetails.userEmail);
+      this.usernameControl.markAsTouched();
+    }, 0);
   }
 
   public ngOnDestroy(): void {
@@ -78,15 +83,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   public createAccount(): void {
-    const accountData: ISignUpDto = {
+    const accountData: ICreateUserDto = {
       email: this.usernameControl.value,
       password: this.passwordControl.value,
       firstName: this.firstNameControl.value,
       lastName: this.lastNameControl.value,
-      companyName: this.companyNameControl.value,
+      companyId: this.invitationDetails.companyId,
     };
 
-    this.authFacade.signUp(accountData);
+    this._userFacade.createAccount(accountData);
   }
 
   private buildForm(): void {
@@ -109,18 +114,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
       ],
     });
 
-    this.companyForm = this.formBuilder.group({
-      companyName: [
-        null,
-        [Validators.required],
-        AvailabilityValidators.IsCompanyNameAvailable(this.signUpFacade),
-      ],
-    });
-
     this.signUpForm = this.formBuilder.group({
       passwordForm: this.passwordForm,
       personaForm: this.personaForm,
-      companyForm: this.companyForm,
     });
   }
 }

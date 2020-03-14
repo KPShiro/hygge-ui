@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: SignUpComponent,
     resolve: {
-      invitationData: InvitationResolver,
+      invitationDetails: InvitationResolver,
     },
     canActivate: [
       VerifyInvitationGuard,
