@@ -1,5 +1,5 @@
 import { Component, Input, Inject, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
+import { SNACKBAR_CONFIG, ISnackbarConfig } from '../snackbar.config';
 import { SnackbarType } from '../enums/snackbar-type.enum';
 
 
@@ -19,7 +19,7 @@ export class SnackbarComponent {
   @ViewChild('snackbar', { static: false }) public snackbar: ElementRef;
 
   constructor(
-    @Inject(SNACKBAR_CONFIG) public readonly config: SnackbarConfig,
+    @Inject(SNACKBAR_CONFIG) public readonly config: ISnackbarConfig,
   ) { }
 
   public animationDone(event: AnimationEvent): void {

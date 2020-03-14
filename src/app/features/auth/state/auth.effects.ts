@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthEffects {
 
-    signIn$ = createEffect(() => this._actions$.pipe(
+    public signIn$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signIn),
         mergeMap((action) => this._authApi.signInWithUsernameAndPassword(action.payload.username, action.payload.password).pipe(
             map((token) => actions.signInSucceeded({ payload: token })),
@@ -19,14 +19,14 @@ export class AuthEffects {
         )),
     ));
 
-    signInSucceeded$ = createEffect(() => this._actions$.pipe(
+    public signInSucceeded$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signInSucceeded),
         map((action) => action.payload),
         tap((token) => localStorage.setItem('token', JSON.stringify(token))),
         tap(() => this._router.navigate(['/dashboard'])),
     ), { dispatch: false });
 
-    signOut$ = createEffect(() => this._actions$.pipe(
+    public signOut$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signOut),
         mergeMap(() => this._authApi.signOut().pipe(
             map(() => actions.signOutSucceeded()),
@@ -34,13 +34,13 @@ export class AuthEffects {
         )),
     ));
 
-    signOutSucceeded$ = createEffect(() => this._actions$.pipe(
+    public signOutSucceeded$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signOutSucceeded),
         tap(() => localStorage.clear()),
         tap(() => this._router.navigate(['/sign-in'])),
     ), { dispatch: false });
 
-    constructor(
+    public constructor(
         private readonly _actions$: Actions,
         private readonly _authApi: AuthApiService,
         private readonly _router: Router,

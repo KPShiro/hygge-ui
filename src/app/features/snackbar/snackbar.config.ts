@@ -1,18 +1,19 @@
 import { InjectionToken } from '@angular/core';
 
-export interface SnackbarTimeoutConfig {
+
+export interface ISnackbarTimeoutConfig {
     default?: number;
     warning?: number;
     error?: number;
 }
 
-export interface SnackbarConfig {
-    timeout: SnackbarTimeoutConfig;
+export interface ISnackbarConfig {
+    timeout: ISnackbarTimeoutConfig;
     maxCount?: number;
     snackbarClass?: string;
 }
 
-export const defaultSnacbarConfig: SnackbarConfig = {
+export const defaultSnacbarConfig: ISnackbarConfig = {
     timeout: {
         default: 3000,
         warning: 5000,
@@ -21,4 +22,4 @@ export const defaultSnacbarConfig: SnackbarConfig = {
     maxCount: 1,
 };
 
-export const SNACKBAR_CONFIG = new InjectionToken<SnackbarConfig>('SNACKBAR_CONFIG');
+export const SNACKBAR_CONFIG = new InjectionToken<ISnackbarConfig>('SNACKBAR_CONFIG');

@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
     private readonly _authFacade: AuthFacadeService,
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.signInForm = this._formBuilder.group({
       username: ['user@app.com', [Validators.required, Validators.email]],
       password: ['test', [Validators.required]],

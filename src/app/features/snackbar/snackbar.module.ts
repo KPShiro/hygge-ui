@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SnackbarComponent } from './component/snackbar.component';
 import { SnackbarService } from './services/snackbar.service';
-import { defaultSnacbarConfig, SNACKBAR_CONFIG, SnackbarConfig } from './snackbar.config';
+import { defaultSnacbarConfig, SNACKBAR_CONFIG, ISnackbarConfig } from './snackbar.config';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 
@@ -26,7 +26,7 @@ export class SnackbarModule {
     this.service.init();
   }
 
-  public static forRoot(config?: SnackbarConfig): ModuleWithProviders {
+  public static forRoot(config?: ISnackbarConfig): ModuleWithProviders {
     return {
       ngModule: SnackbarModule,
       providers: [

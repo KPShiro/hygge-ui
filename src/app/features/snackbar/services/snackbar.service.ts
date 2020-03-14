@@ -3,7 +3,7 @@ import { SnackbarComponent } from '../component/snackbar.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { filter } from 'rxjs/operators';
-import { SNACKBAR_CONFIG, SnackbarConfig } from '../snackbar.config';
+import { SNACKBAR_CONFIG, ISnackbarConfig } from '../snackbar.config';
 import { SnackbarType } from '../enums/snackbar-type.enum';
 
 
@@ -13,7 +13,7 @@ export class SnackbarService {
   private _componentRefs: ComponentRef<SnackbarComponent>[] = [];
 
   public constructor(
-    @Inject(SNACKBAR_CONFIG) private readonly config: SnackbarConfig,
+    @Inject(SNACKBAR_CONFIG) private readonly config: ISnackbarConfig,
     private readonly factoryResolver: ComponentFactoryResolver,
     private readonly appRef: ApplicationRef,
     private readonly injector: Injector,

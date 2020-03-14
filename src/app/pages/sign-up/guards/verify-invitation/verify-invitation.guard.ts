@@ -8,11 +8,11 @@ import { isNullOrUndefined } from 'util';
   providedIn: 'root'
 })
 export class VerifyInvitationGuard implements CanActivate {
-  constructor(
+  public constructor(
     private readonly router: Router,
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (isNullOrUndefined(route.queryParams.invitationId)) {
       this.router.navigate(['/sign-up/invalid-invitation']);
       return false;

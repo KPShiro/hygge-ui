@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class InvitationResolver implements Resolve<any> {
-  resolve(): Observable<any> {
+  public resolve(): Observable<any> {
     return of({
       userEmail: 'user@app.com',
       companyId: '0000-0000-0000-0001',
