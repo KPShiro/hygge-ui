@@ -24,7 +24,7 @@ export class AuthFacadeService {
     return JSON.parse(stringifiedToken);
   }
 
-  constructor(
+  public constructor(
     private readonly _store: Store<IAuthState>,
   ) { }
 

@@ -9,7 +9,7 @@ import { IToken } from '@features/auth/interfaces/token.interface';
 @Injectable()
 export class AuthApiService {
 
-  constructor(
+  public constructor(
     private readonly _httpClient: HttpClient,
   ) { }
 

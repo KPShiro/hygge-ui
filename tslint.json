@@ -25,13 +25,21 @@
       true,
       "rxjs/Rx"
     ],
-    "interface-name": true,
-    "max-classes-per-file": false,
-    "max-line-length": [
+    "indent": [
       true,
-      180
+      "spaces",
+      4
     ],
-    "member-access": true,
+    "interface-name": [
+      true,
+      "always-prefix"
+    ],
+    "max-classes-per-file": false,
+    "max-line-length": false,
+    "member-access": [
+      true,
+      "check-constructor"
+    ],
     "member-ordering": [
       true,
       {
@@ -43,7 +51,11 @@
         ]
       }
     ],
-    "no-consecutive-blank-lines": false,
+    "newline-before-return": true,
+    "no-consecutive-blank-lines": [
+      true,
+      2
+    ],
     "no-console": [
       true,
       "debug",
@@ -66,7 +78,7 @@
     "no-switch-case-fall-through": true,
     "no-shadowed-variable": true,
     "no-use-before-declare": true,
-    "no-unused-variable": false,
+    "no-unused-variable": true,
     "no-var-keyword": true,
     "no-var-requires": false,
     "object-literal-key-quotes": [

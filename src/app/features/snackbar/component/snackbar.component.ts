@@ -18,7 +18,7 @@ export class SnackbarComponent {
 
   @ViewChild('snackbar', { static: false }) public snackbar: ElementRef;
 
-  constructor(
+  public constructor(
     @Inject(SNACKBAR_CONFIG) public readonly config: ISnackbarConfig,
   ) { }
 

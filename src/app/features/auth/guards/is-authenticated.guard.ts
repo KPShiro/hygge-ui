@@ -12,13 +12,13 @@ export class IsAuthenticatedGuard implements CanActivate {
         private readonly _router: Router,
     ) { }
 
-    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    public canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
         return this._authFacade.isAuthenticated$.pipe(
             map((isAuthenticated) => {
                 if (!isAuthenticated) {
                     this._router.navigate(['/sign-in'], {
                         queryParams: {
-                            returnUrl: state.url,
+                            returnUrl: _state.url,
                         },
                         queryParamsHandling: 'merge',
                         preserveQueryParams: true,

@@ -15,6 +15,7 @@ export class VerifyInvitationGuard implements CanActivate {
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (isNullOrUndefined(route.queryParams.invitationId)) {
       this.router.navigate(['/sign-up/invalid-invitation']);
+
       return false;
     }
 
