@@ -19,6 +19,8 @@
       "dom"
     ],
     "paths": {
+      "@features/*": ["src/app/features/*"],
+      "@pages/*": ["src/app/pages/*"],
       "@modules/*": ["src/app/modules/*"],
       "@containers/*": ["src/app/containers/*"],
       "@app/*": ["src/app/*"],
