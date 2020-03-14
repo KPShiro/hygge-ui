@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IToken } from '../interfaces/token.interface';
 
 
 function createActionName(name: string): string {
@@ -12,6 +13,7 @@ export const signIn = createAction(
 
 export const signInSucceeded = createAction(
     createActionName('Sign in: Succeeded'),
+    props<{ payload: IToken }>(),
 );
 
 export const signInFailed = createAction(
