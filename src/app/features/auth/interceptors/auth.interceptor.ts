@@ -7,8 +7,8 @@ import {
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { IToken } from '../interfaces/token.interface';
 import { AuthFacadeService } from '../services/auth-facade/auth-facade.service';
+import { flatMap, first } from 'rxjs/operators';
 
 
 @Injectable()
@@ -19,16 +19,19 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token: IToken | null = this._authFacade.token;
+        return this._authFacade.token$.pipe(
+            first(),
+            flatMap((token) => {
+                if (!isNullOrUndefined(token)) {
+                    request = request.clone({
+                        setHeaders: {
+                            Authorization: `Bearer ${token.accessToken}`,
+                        },
+                    });
+                }
 
-        if (!isNullOrUndefined(token)) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${token.accessToken}`,
-                },
-            });
-        }
-
-        return next.handle(request);
+                return next.handle(request);
+            }),
+        );
     }
 }

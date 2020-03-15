@@ -6,13 +6,13 @@ import { DEFAULT_AUTH_STATE, IAuthState } from './auth.state';
 
 const _reducer: ActionReducer<IAuthState, Action> = createReducer(
     DEFAULT_AUTH_STATE,
-    on(actions.signInSucceeded, (state) => ({
+    on(actions.signInSucceeded, (state, { payload }) => ({
         ...state,
-        isAuthenticated: true,
+        token: payload,
     })),
     on(actions.signOutSucceeded, (state) => ({
         ...state,
-        isAuthenticated: false,
+        token: undefined,
     })),
 );
 

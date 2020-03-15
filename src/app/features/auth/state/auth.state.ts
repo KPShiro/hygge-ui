@@ -1,7 +1,8 @@
+import { IToken } from '../interfaces/token.interface';
+
+
 export interface IAuthState {
-    isAuthenticated: boolean;
+    token?: IToken;
 }
 
-export const DEFAULT_AUTH_STATE: IAuthState = {
-    isAuthenticated: false,
-};
+export const DEFAULT_AUTH_STATE: IAuthState = {};

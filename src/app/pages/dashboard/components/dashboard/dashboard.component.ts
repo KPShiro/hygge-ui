@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthFacadeService } from '@features/auth/services/auth-facade/auth-facade.service';
 
 
 @Component({
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent { }
+export class DashboardComponent {
+  public constructor(
+    private readonly _authFacade: AuthFacadeService,
+  ) { }
+
+  public signOut(): void {
+    this._authFacade.signOut();
+  }
+}

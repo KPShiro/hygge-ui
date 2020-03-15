@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAuthState } from '@features/auth/state/auth.state';
 import { Observable } from 'rxjs';
-import { isNullOrUndefined } from 'util';
 import { IToken } from '@features/auth/interfaces/token.interface';
 
 
@@ -13,16 +12,7 @@ import { IToken } from '@features/auth/interfaces/token.interface';
 export class AuthFacadeService {
 
   public isAuthenticated$: Observable<boolean> = this._store.select(selectors.isAuthenticated);
-
-  public get token(): IToken | null {
-    const stringifiedToken: string | null = localStorage.getItem('token');
-
-    if (isNullOrUndefined(stringifiedToken)) {
-      return null;
-    }
-
-    return JSON.parse(stringifiedToken);
-  }
+  public token$: Observable<IToken> = this._store.select(selectors.token);
 
   public constructor(
     private readonly _store: Store<IAuthState>,

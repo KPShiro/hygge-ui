@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthFacadeService } from '../services/auth-facade/auth-facade.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
+import { isNullOrUndefined } from 'util';
 
 
 @Injectable({ providedIn: 'root' })
@@ -13,19 +14,20 @@ export class IsAuthenticatedGuard implements CanActivate {
     ) { }
 
     public canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
-        return this._authFacade.isAuthenticated$.pipe(
-            map((isAuthenticated) => {
-                if (!isAuthenticated) {
-                    this._router.navigate(['/sign-in'], {
-                        queryParams: {
-                            returnUrl: _state.url,
-                        },
-                        queryParamsHandling: 'merge',
-                        preserveQueryParams: true,
-                    });
+        return this._authFacade.token$.pipe(
+            first(),
+            map((token) => {
+                if (!isNullOrUndefined(token)) {
+                    return true;
                 }
 
-                return isAuthenticated;
+                this._router.navigate(['/sign-in'], {
+                    queryParams: {
+                        returnUrl: _state.url,
+                    },
+                });
+
+                return false;
             }),
         );
     }

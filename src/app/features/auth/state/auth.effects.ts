@@ -5,7 +5,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../services/auth-api/auth-api.service';
 import { mergeMap, catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 
 @Injectable()
@@ -21,14 +22,20 @@ export class AuthEffects {
 
     public signInSucceeded$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signInSucceeded),
-        map((action) => action.payload),
-        tap((token) => localStorage.setItem('token', JSON.stringify(token))),
-        tap(() => this._router.navigate(['/dashboard'])),
+        map(() => this._route.snapshot.queryParams.returnUrl),
+        tap((returnUrl) => {
+            if (!isNullOrUndefined(returnUrl)) {
+                this._router.navigateByUrl(returnUrl);
+            } else {
+                this._router.navigate(['/dashboard']);
+            }
+        }),
     ), { dispatch: false });
 
     public signOut$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signOut),
         mergeMap(() => this._authApi.signOut().pipe(
+            tap(() => localStorage.clear()),
             map(() => actions.signOutSucceeded()),
             catchError(() => of(actions.signOutFailed())),
         )),
@@ -36,7 +43,6 @@ export class AuthEffects {
 
     public signOutSucceeded$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signOutSucceeded),
-        tap(() => localStorage.clear()),
         tap(() => this._router.navigate(['/sign-in'])),
     ), { dispatch: false });
 
@@ -44,5 +50,6 @@ export class AuthEffects {
         private readonly _actions$: Actions,
         private readonly _authApi: AuthApiService,
         private readonly _router: Router,
+        private readonly _route: ActivatedRoute,
     ) { }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IToken } from '@features/auth/interfaces/token.interface';
 
@@ -16,9 +15,7 @@ export class AuthApiService {
   public signInWithUsernameAndPassword(username: string, password: string): Observable<IToken> {
     const url = `${environment.api.auth.url}${environment.api.auth.endpoints.login}`;
 
-    return this._httpClient.post<IToken>(url, { username, password }).pipe(
-      shareReplay(),
-    );
+    return this._httpClient.post<IToken>(url, { username, password });
   }
 
   public signOut(): Observable<void> {
