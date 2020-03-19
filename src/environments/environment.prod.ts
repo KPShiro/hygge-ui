@@ -1,22 +1,29 @@
 export const environment = {
-  production: true,
+  production: false,
   api: {
     auth: {
       url: 'http://localhost:3000/auth',
       endpoints: {
         login: '/login',
-        refresh: '/refresh',
         logout: '/logout',
-        register: '/register',
+        refresh: '/refresh',
       },
     },
-    verify: {
-      url: 'http://localhost:3000/verify',
+    userAccount: {
+      url: 'http://localhost:3000/user-account',
       endpoints: {
-        username: '/username',
-        companyName: '/companyName',
-        invitation: '/invitation',
-      }
-    }
+        create: '/create',
+        delete: '/delete',
+        isUsernameAvailable: '/username/available',
+      },
+    },
+    companyAccount: {
+      url: 'http://localhost:3000/company-account',
+      endpoints: {
+        create: '/create',
+        delete: '/delete',
+        isNameAvailable: '/company-name/available',
+      },
+    },
   },
 };
