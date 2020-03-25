@@ -2,11 +2,8 @@
     <div class="container-fluid h-100 align-items-center">
         <div class="row h-100 align-items-center">
             <div class="col col-md-4 offset-md-4 text-center">
-                <h1 class="m-0">Invalid invitation</h1>
-                <div>
-                    Irure dolore irure enim ut aute sint dolor enim culpa exercitation in. Deserunt quis laborum non labore aute
-                    culpa voluptate consectetur proident ad ipsum do. Laboris nisi velit Lorem in.
-                </div>
+                <h1 [innerHTML]="'page_invalid_invitation.title' | translate"></h1>
+                <div [innerHTML]="'page_invalid_invitation.description' | translate"></div>
             </div>
         </div>
     </div>

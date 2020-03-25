@@ -1,49 +1,53 @@
 <div class="container-fluid">
     <div class="row">
         <form [formGroup]="signUpForm" class="col-12 col-md-4" (submit)="createAccount()">
-            <h3 class="mb-4">Creating new account</h3>
+            <h3 class="mb-4" [innerHTML]="'page_sign_up.title' | translate"></h3>
             <div formGroupName="personaForm" class="row">
                 <div class="form-group col-12">
-                    <label for="username">Username/Email *</label>
-                    <input id="username" class="form-control" type="email" placeholder="user@app.com"
-                        formControlName="username" aria-describedby="usernameHelp"
+                    <label for="username" [innerHTML]="'page_sign_up.form.label_username' | translate"></label>
+                    <input id="username" class="form-control" type="email"
+                        [placeholder]="'page_sign_up.form.placeholder_username' | translate" formControlName="username"
+                        aria-describedby="usernameHelp"
                         [ngClass]="{ 'is-invalid': usernameControl.invalid && usernameControl.touched, 'is-valid': usernameControl.valid && usernameControl.touched }">
                     <small class="text-danger" *ngIf="usernameControl.hasError('isTaken')">
-                        This username is already taken
+                        {{ 'page_sign_up.errors.USERNAME_TAKEN' | translate }}
                     </small>
                 </div>
             </div>
             <div formGroupName="passwordForm" class="row">
                 <div class="form-group col-6 pr-2">
-                    <label for="password">Password *</label>
-                    <input id="password" class="form-control" type="password" placeholder="*********"
-                        formControlName="password"
+                    <label for="password" [innerHTML]="'page_sign_up.form.label_password' | translate"></label>
+                    <input id="password" class="form-control" type="password"
+                        [placeholder]="'page_sign_up.form.placeholder_password' | translate" formControlName="password"
                         [ngClass]="{ 'is-invalid': passwordControl.invalid && passwordControl.touched }">
                 </div>
                 <div class="form-group col-6 pl-0">
-                    <label for="confirmPassword">Confirm password *</label>
-                    <input id="confirmPassword" class="form-control" type="password" placeholder="*********"
+                    <label for="confirmPassword"
+                        [innerHTML]="'page_sign_up.form.label_confirm_password' | translate"></label>
+                    <input id="confirmPassword" class="form-control" type="password"
+                        [placeholder]="'page_sign_up.form.placeholder_confirm_password' | translate"
                         formControlName="confirmPassword"
                         [ngClass]="{ 'is-invalid': confirmPasswordControl.invalid && confirmPasswordControl.touched }">
                 </div>
             </div>
             <div formGroupName="personaForm" class="row">
                 <div class="form-group col-6 pr-2">
-                    <label for="firstName">First name *</label>
-                    <input id="firstName" class="form-control" type="text" placeholder="John"
+                    <label for="firstName" [innerHTML]="'page_sign_up.form.label_first_name' | translate"></label>
+                    <input id="firstName" class="form-control" type="text"
+                        [placeholder]="'page_sign_up.form.placeholder_first_name' | translate"
                         formControlName="firstName"
                         [ngClass]="{ 'is-invalid': firstNameControl.invalid && firstNameControl.touched }">
                 </div>
                 <div class="form-group col-6 pl-0">
-                    <label for="lastName">Last name *</label>
-                    <input id="lastName" class="form-control" type="text" placeholder="Garmandia"
-                        formControlName="lastName"
+                    <label for="lastName" [innerHTML]="'page_sign_up.form.label_last_name' | translate"></label>
+                    <input id="lastName" class="form-control" type="text"
+                        [placeholder]="'page_sign_up.form.placeholder_last_name' | translate" formControlName="lastName"
                         [ngClass]="{ 'is-invalid': lastNameControl.invalid && lastNameControl.touched }">
                 </div>
             </div>
             <div class="actions mt-5 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary" [disabled]="!isFormValid">
-                    Create
+                    {{ 'page_sign_up.form.btn_submit' | translate }}
                 </button>
             </div>
         </form>

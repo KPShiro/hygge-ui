@@ -1,5 +1,5 @@
 {
-    "sign_in_page": {
+    "page_sign_in": {
         "title": "HYGGE Portal",
         "form": {
             "label_username": "Username",
@@ -9,7 +9,28 @@
             "btn_submit": "Sign in"
         }
     },
+    "page_sign_up": {
+        "title": "Creating new account",
+        "form": {
+            "label_username": "Username",
+            "placeholder_username": "user@company.com",
+            "label_password": "Password",
+            "placeholder_password": "************",
+            "label_confirm_password": "Confirm password",
+            "placeholder_confirm_password": "************",
+            "label_first_name": "First name",
+            "placeholder_first_name": "John",
+            "label_last_name": "Last name",
+            "placeholder_last_name": "Garmandia",
+            "btn_submit": "Complete and sign in"
+        }
+    },
+    "page_invalid_invitation": {
+        "title": "Invalid invitation",
+        "description": "We were not able to validate your invitaion. Please try again in a few seconds. If this issue is repeating, please contact our support team."
+    },
     "errors": {
-        "CREDENTIALS_INVALID": "Invalid username or password"
+        "CREDENTIALS_INVALID": "Invalid username or password",
+        "USERNAME_TAKEN": "This username is already taken"
     }
 }
