@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IToken } from '../interfaces/token.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 function createActionName(name: string): string {
@@ -18,6 +19,7 @@ export const signInSucceeded = createAction(
 
 export const signInFailed = createAction(
     createActionName('Sign in: Failed'),
+    props<{ payload: HttpErrorResponse }>(),
 );
 
 export const signOut = createAction(
@@ -30,4 +32,5 @@ export const signOutSucceeded = createAction(
 
 export const signOutFailed = createAction(
     createActionName('Sign out: Failed'),
+    props<{ payload: HttpErrorResponse }>(),
 );

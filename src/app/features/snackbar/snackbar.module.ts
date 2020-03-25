@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SnackbarComponent } from './component/snackbar.component';
 import { SnackbarService } from './services/snackbar.service';
 import { defaultSnacbarConfig, SNACKBAR_CONFIG, ISnackbarConfig } from './snackbar.config';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 
 @NgModule({
@@ -37,11 +35,6 @@ export class SnackbarModule {
             ...defaultSnacbarConfig,
             ...config,
           },
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: ErrorInterceptor,
-          multi: true,
         },
       ],
     };

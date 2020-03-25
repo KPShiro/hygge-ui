@@ -10,6 +10,9 @@
         <label for="password" class="text-muted">Password</label>
         <input #password class="form-control" type="password" placeholder="*************" formControlName="password">
       </div>
+      <div class="alert alert-danger" role="alert" *ngFor="let error of (errors$ | async)">
+        {{ error }}
+      </div>
       <button type="submit" class="btn btn-primary mt-2" (click)="signIn()">
         Sign in
       </button>

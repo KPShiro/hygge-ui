@@ -13,6 +13,7 @@ export class AuthFacadeService {
 
   public isAuthenticated$: Observable<boolean> = this._store.select(selectors.isAuthenticated);
   public token$: Observable<IToken> = this._store.select(selectors.token);
+  public errors$: Observable<string[]> = this._store.select(selectors.errors);
 
   public constructor(
     private readonly _store: Store<IAuthState>,

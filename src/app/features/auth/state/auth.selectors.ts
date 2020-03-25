@@ -14,3 +14,8 @@ export const token = createSelector(
     selectFeature,
     (state: IAuthState) => state.token,
 );
+
+export const errors = createSelector(
+    selectFeature,
+    (state: IAuthState) => state.errors,
+);

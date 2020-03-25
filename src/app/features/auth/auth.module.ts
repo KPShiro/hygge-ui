@@ -7,23 +7,14 @@ import { AuthEffects } from './state/auth.effects';
 import { AuthApiService } from './services/auth-api/auth-api.service';
 import { AuthFacadeService } from './services/auth-facade/auth-facade.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { IAuthState } from './state/auth.state';
-import { createStorageMetareducer, IStorageMetareducerConfig } from '@app/app-storage.metareducer';
+import { AuthStateService } from './services/auth-state/auth-state.service';
 
-
-const stateStorageConfig: IStorageMetareducerConfig = {
-  storageKey: '__hygge_auth__',
-  stateKeysToSave: ['token'],
-};
 
 @NgModule({
   imports: [
     HttpClientModule,
     StoreModule.forFeature(
       'auth', reducer,
-      {
-        metaReducers: [createStorageMetareducer<IAuthState>(stateStorageConfig)],
-      }
     ),
     EffectsModule.forFeature([AuthEffects]),
   ]
@@ -41,6 +32,7 @@ export class AuthModule {
       providers: [
         AuthApiService,
         AuthFacadeService,
+        AuthStateService,
         {
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptor,

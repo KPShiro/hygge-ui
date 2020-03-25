@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
 import { AuthModule } from '@features/auth/auth.module';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@features/core/core.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 
 const ngrx = [
@@ -39,6 +41,13 @@ const features = [
     AppRoutingModule,
     ...ngrx,
     ...features,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

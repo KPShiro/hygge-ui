@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthFacadeService } from '@features/auth/services/auth-facade/auth-facade.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class SignInComponent implements OnInit {
   public get passwordField(): FormControl {
     return this.signInForm.get('password') as FormControl;
   }
+
+  public errors$: Observable<string[]> = this._authFacade.errors$;
 
   public constructor(
     private readonly _formBuilder: FormBuilder,
