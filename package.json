@@ -24,6 +24,8 @@
     "@ngrx/effects": "^9.0.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "^4.4.1",
     "jasmine-marbles": "^0.6.0",
     "lodash-es": "^4.17.15",

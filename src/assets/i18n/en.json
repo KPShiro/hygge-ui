@@ -1,0 +1,15 @@
+{
+    "sign_in_page": {
+        "title": "HYGGE Portal",
+        "form": {
+            "label_username": "Username",
+            "placeholder_username": "user@company.com",
+            "label_password": "Password",
+            "placeholder_password": "************",
+            "btn_submit": "Sign in"
+        }
+    },
+    "errors": {
+        "CREDENTIALS_INVALID": "Invalid username or password"
+    }
+}
