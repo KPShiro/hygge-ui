@@ -7,24 +7,24 @@ import { InvitationResolver } from './guards/invitation-resolver/invitation-reso
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: SignUpComponent,
-    resolve: {
-      invitationDetails: InvitationResolver,
+    {
+        path: '',
+        component: SignUpComponent,
+        resolve: {
+            invitationDetails: InvitationResolver,
+        },
+        canActivate: [
+            VerifyInvitationGuard,
+        ],
     },
-    canActivate: [
-      VerifyInvitationGuard,
-    ],
-  },
-  {
-    path: 'invalid-invitation',
-    component: InvalidInvitationComponent,
-  },
+    {
+        path: 'invalid-invitation',
+        component: InvalidInvitationComponent,
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class SignUpRoutingModule { }

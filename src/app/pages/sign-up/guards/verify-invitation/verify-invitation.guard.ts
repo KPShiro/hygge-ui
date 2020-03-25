@@ -5,20 +5,20 @@ import { isNullOrUndefined } from 'util';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class VerifyInvitationGuard implements CanActivate {
-  public constructor(
-    private readonly router: Router,
-  ) { }
+    public constructor(
+        private readonly router: Router,
+    ) { }
 
-  public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (isNullOrUndefined(route.queryParams.invitationId)) {
-      this.router.navigate(['/sign-up/invalid-invitation']);
+    public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        if (isNullOrUndefined(route.queryParams.invitationId)) {
+            this.router.navigate(['/sign-up/invalid-invitation']);
 
-      return false;
+            return false;
+        }
+
+        return true;
     }
-
-    return true;
-  }
 }

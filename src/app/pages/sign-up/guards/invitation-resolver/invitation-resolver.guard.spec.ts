@@ -3,13 +3,13 @@ import { InvitationResolver } from './invitation-resolver.guard';
 
 
 describe('InvitationResolver', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [InvitationResolver]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [InvitationResolver]
+        });
     });
-  });
 
-  it('should ...', inject([InvitationResolver], (guard: InvitationResolver) => {
-    expect(guard).toBeTruthy();
-  }));
+    it('should ...', inject([InvitationResolver], (guard: InvitationResolver) => {
+        expect(guard).toBeTruthy();
+    }));
 });

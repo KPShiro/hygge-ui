@@ -13,36 +13,36 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 
 const ngrx = [
-  StoreModule.forRoot({}),
-  EffectsModule.forRoot([]),
-  StoreDevtoolsModule.instrument({
-    maxAge: 25,
-    logOnly: environment.production,
-  }),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+        maxAge: 25,
+        logOnly: environment.production,
+    }),
 ];
 
 const features = [
-  AuthModule.forRoot(),
-  SnackbarModule.forRoot(),
+    AuthModule.forRoot(),
+    SnackbarModule.forRoot(),
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ...ngrx,
-    ...features,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ...ngrx,
+        ...features,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

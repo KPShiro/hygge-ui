@@ -5,10 +5,10 @@ import { SharedModule } from '@features/shared/shared.module';
 
 
 @NgModule({
-  declarations: [DashboardComponent],
-  imports: [
-    SharedModule,
-    DashboardRoutingModule,
-  ]
+    declarations: [DashboardComponent],
+    imports: [
+        SharedModule,
+        DashboardRoutingModule,
+    ]
 })
 export class DashboardModule { }

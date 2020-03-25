@@ -11,34 +11,34 @@ import { AuthStateService } from './services/auth-state/auth-state.service';
 
 
 @NgModule({
-  imports: [
-    HttpClientModule,
-    StoreModule.forFeature(
-      'auth', reducer,
-    ),
-    EffectsModule.forFeature([AuthEffects]),
-  ]
+    imports: [
+        HttpClientModule,
+        StoreModule.forFeature(
+            'auth', reducer,
+        ),
+        EffectsModule.forFeature([AuthEffects]),
+    ]
 })
 export class AuthModule {
-  public constructor(@Optional() @SkipSelf() parentModule?: AuthModule) {
-    if (parentModule) {
-      throw new Error('AuthModule is already loaded. Import it in the AppModule only!');
+    public constructor(@Optional() @SkipSelf() parentModule?: AuthModule) {
+        if (parentModule) {
+            throw new Error('AuthModule is already loaded. Import it in the AppModule only!');
+        }
     }
-  }
 
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: AuthModule,
-      providers: [
-        AuthApiService,
-        AuthFacadeService,
-        AuthStateService,
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthInterceptor,
-          multi: true,
-        },
-      ]
-    };
-  }
+    public static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: AuthModule,
+            providers: [
+                AuthApiService,
+                AuthFacadeService,
+                AuthStateService,
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: AuthInterceptor,
+                    multi: true,
+                },
+            ]
+        };
+    }
 }

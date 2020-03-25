@@ -8,50 +8,50 @@ import * as actions from '../../state/auth.actions';
 
 
 describe('AuthFacadeService', () => {
-  let authFacadeService: AuthFacadeService;
-  let store: MockStore<IAuthState>;
+    let authFacadeService: AuthFacadeService;
+    let store: MockStore<IAuthState>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        AuthFacadeService,
-        provideMockStore({
-          initialState: DEFAULT_AUTH_STATE,
-        }),
-      ]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                AuthFacadeService,
+                provideMockStore({
+                    initialState: DEFAULT_AUTH_STATE,
+                }),
+            ]
+        });
+
+        authFacadeService = TestBed.get(AuthFacadeService);
+        store = TestBed.get(Store);
     });
 
-    authFacadeService = TestBed.get(AuthFacadeService);
-    store = TestBed.get(Store);
-  });
-
-  it('should be created', () => {
-    expect(authFacadeService).toBeTruthy();
-  });
-
-  afterEach(() => {
-    store.setState({
-      ...DEFAULT_AUTH_STATE,
+    it('should be created', () => {
+        expect(authFacadeService).toBeTruthy();
     });
-  });
 
-  describe('signInWithUsernameAndPassword()', () => {
-    it('should dispatch sign in action', () => {
-      authFacadeService.signInWithUsernameAndPassword('user@email.com', 'password');
-
-      store.scannedActions$.subscribe((action) => {
-        expect(action.type).toBe(actions.signIn.type);
-      });
+    afterEach(() => {
+        store.setState({
+            ...DEFAULT_AUTH_STATE,
+        });
     });
-  });
 
-  describe('signOut()', () => {
-    it('should dispatch sign out action', () => {
-      authFacadeService.signOut();
+    describe('signInWithUsernameAndPassword()', () => {
+        it('should dispatch sign in action', () => {
+            authFacadeService.signInWithUsernameAndPassword('user@email.com', 'password');
 
-      store.scannedActions$.subscribe((action) => {
-        expect(action.type).toBe(actions.signOut.type);
-      });
+            store.scannedActions$.subscribe((action) => {
+                expect(action.type).toBe(actions.signIn.type);
+            });
+        });
     });
-  });
+
+    describe('signOut()', () => {
+        it('should dispatch sign out action', () => {
+            authFacadeService.signOut();
+
+            store.scannedActions$.subscribe((action) => {
+                expect(action.type).toBe(actions.signOut.type);
+            });
+        });
+    });
 });

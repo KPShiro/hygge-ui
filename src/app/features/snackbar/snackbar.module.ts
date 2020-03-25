@@ -6,37 +6,37 @@ import { defaultSnacbarConfig, SNACKBAR_CONFIG, ISnackbarConfig } from './snackb
 
 
 @NgModule({
-  declarations: [
-    SnackbarComponent
-  ],
-  imports: [
-    CommonModule,
-  ],
-  entryComponents: [
-    SnackbarComponent,
-  ],
+    declarations: [
+        SnackbarComponent
+    ],
+    imports: [
+        CommonModule,
+    ],
+    entryComponents: [
+        SnackbarComponent,
+    ],
 })
 export class SnackbarModule {
 
-  public constructor(
-    private readonly service: SnackbarService,
-  ) {
-    this.service.init();
-  }
+    public constructor(
+        private readonly service: SnackbarService,
+    ) {
+        this.service.init();
+    }
 
-  public static forRoot(config?: ISnackbarConfig): ModuleWithProviders {
-    return {
-      ngModule: SnackbarModule,
-      providers: [
-        SnackbarService,
-        {
-          provide: SNACKBAR_CONFIG,
-          useValue: {
-            ...defaultSnacbarConfig,
-            ...config,
-          },
-        },
-      ],
-    };
-  }
+    public static forRoot(config?: ISnackbarConfig): ModuleWithProviders {
+        return {
+            ngModule: SnackbarModule,
+            providers: [
+                SnackbarService,
+                {
+                    provide: SNACKBAR_CONFIG,
+                    useValue: {
+                        ...defaultSnacbarConfig,
+                        ...config,
+                    },
+                },
+            ],
+        };
+    }
 }

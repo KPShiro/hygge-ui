@@ -4,33 +4,33 @@ import { AuthFacadeService } from '@features/auth/services/auth-facade/auth-faca
 
 
 class AuthFacadeServiceMock {
-  public signOut(): void { return; }
+    public signOut(): void { return; }
 }
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+    let component: DashboardComponent;
+    let fixture: ComponentFixture<DashboardComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
-      providers: [
-        {
-          provide: AuthFacadeService,
-          useClass: AuthFacadeServiceMock,
-        }
-      ],
-    })
-      .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [DashboardComponent],
+            providers: [
+                {
+                    provide: AuthFacadeService,
+                    useClass: AuthFacadeServiceMock,
+                }
+            ],
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(DashboardComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

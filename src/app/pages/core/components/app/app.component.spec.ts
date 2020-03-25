@@ -4,23 +4,23 @@ import { AppComponent } from './app.component';
 
 
 describe('AppComponent', () => {
-  let component: AppComponent;
+    let component: AppComponent;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                RouterTestingModule
+            ],
+            declarations: [
+                AppComponent
+            ],
+        }).compileComponents();
 
-    const fixture = TestBed.createComponent(AppComponent);
-    component = fixture.debugElement.componentInstance;
-  }));
+        const fixture = TestBed.createComponent(AppComponent);
+        component = fixture.debugElement.componentInstance;
+    }));
 
-  it('should create the app', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create the app', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -11,19 +11,19 @@ import { IToken } from '@features/auth/interfaces/token.interface';
 @Injectable()
 export class AuthFacadeService {
 
-  public isAuthenticated$: Observable<boolean> = this._store.select(selectors.isAuthenticated);
-  public token$: Observable<IToken> = this._store.select(selectors.token);
-  public errors$: Observable<string[]> = this._store.select(selectors.errors);
+    public isAuthenticated$: Observable<boolean> = this._store.select(selectors.isAuthenticated);
+    public token$: Observable<IToken> = this._store.select(selectors.token);
+    public errors$: Observable<string[]> = this._store.select(selectors.errors);
 
-  public constructor(
-    private readonly _store: Store<IAuthState>,
-  ) { }
+    public constructor(
+        private readonly _store: Store<IAuthState>,
+    ) { }
 
-  public signInWithUsernameAndPassword(username: string, password: string): void {
-    this._store.dispatch(actions.signIn({ payload: { username, password } }));
-  }
+    public signInWithUsernameAndPassword(username: string, password: string): void {
+        this._store.dispatch(actions.signIn({ payload: { username, password } }));
+    }
 
-  public signOut(): void {
-    this._store.dispatch(actions.signOut());
-  }
+    public signOut(): void {
+        this._store.dispatch(actions.signOut());
+    }
 }

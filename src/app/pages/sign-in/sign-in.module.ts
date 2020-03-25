@@ -6,13 +6,13 @@ import { SharedModule } from '@features/shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    SignInComponent,
-  ],
-  imports: [
-    SharedModule,
-    SignInRoutingModule,
-    ReactiveFormsModule,
-  ]
+    declarations: [
+        SignInComponent,
+    ],
+    imports: [
+        SharedModule,
+        SignInRoutingModule,
+        ReactiveFormsModule,
+    ]
 })
 export class SignInModule { }

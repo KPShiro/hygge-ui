@@ -5,21 +5,21 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('SnackbarService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [
-      RouterTestingModule,
-    ],
-    providers: [
-      SnackbarService,
-      {
-        provide: SNACKBAR_CONFIG,
-        useValue: defaultSnacbarConfig,
-      },
-    ],
-  }));
+    beforeEach(() => TestBed.configureTestingModule({
+        imports: [
+            RouterTestingModule,
+        ],
+        providers: [
+            SnackbarService,
+            {
+                provide: SNACKBAR_CONFIG,
+                useValue: defaultSnacbarConfig,
+            },
+        ],
+    }));
 
-  it('should be created', () => {
-    const service: SnackbarService = TestBed.get(SnackbarService);
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        const service: SnackbarService = TestBed.get(SnackbarService);
+        expect(service).toBeTruthy();
+    });
 });

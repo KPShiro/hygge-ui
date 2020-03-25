@@ -4,16 +4,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('VerifyInvitationGuard', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [VerifyInvitationGuard],
-      imports: [
-        RouterTestingModule,
-      ],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [VerifyInvitationGuard],
+            imports: [
+                RouterTestingModule,
+            ],
+        });
     });
-  });
 
-  it('should ...', inject([VerifyInvitationGuard], (guard: VerifyInvitationGuard) => {
-    expect(guard).toBeTruthy();
-  }));
+    it('should ...', inject([VerifyInvitationGuard], (guard: VerifyInvitationGuard) => {
+        expect(guard).toBeTruthy();
+    }));
 });
