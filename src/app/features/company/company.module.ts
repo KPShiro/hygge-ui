@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CompanyApiService } from './services/company-api/company-api.service';
 import { InvitationResolver } from './guards/invitation-resolver/invitation-resolver.guard';
+import { CompanyFacadeService } from './services/company-facade/company-facade.service';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ export class CompanyModule {
             ngModule: CompanyModule,
             providers: [
                 CompanyApiService,
+                CompanyFacadeService,
                 InvitationResolver,
             ]
         };

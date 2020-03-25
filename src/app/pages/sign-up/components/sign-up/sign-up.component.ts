@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { PasswordMatch } from '@pages/sign-up/validators/password-match/password-match.validator';
+import { ActivatedRoute } from '@angular/router';
+import { IInvitation } from '@features/company/interfaces/invitation.interface';
 
 
 @Component({
@@ -38,7 +40,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private personaForm?: FormGroup;
 
     public constructor(
-        private readonly formBuilder: FormBuilder,
+        private readonly _formBuilder: FormBuilder,
+        private readonly _route: ActivatedRoute,
     ) { }
 
     public get isFormValid(): boolean {
@@ -66,16 +69,18 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     private buildForm(): void {
-        this.personaForm = this.formBuilder.group({
+        const invitationDetails: IInvitation = this._route.snapshot.data.invitationDetails;
+
+        this.personaForm = this._formBuilder.group({
             username: [
-                null,
+                invitationDetails.email,
                 [Validators.required, Validators.email],
             ],
             firstName: [null, [Validators.required]],
             lastName: [null, [Validators.required]],
         });
 
-        this.passwordForm = this.formBuilder.group({
+        this.passwordForm = this._formBuilder.group({
             password: [null, [Validators.required]],
             confirmPassword: [null, [Validators.required]],
         }, {
@@ -84,7 +89,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
             ],
         });
 
-        this.signUpForm = this.formBuilder.group({
+        this.signUpForm = this._formBuilder.group({
             passwordForm: this.passwordForm,
             personaForm: this.personaForm,
         });
