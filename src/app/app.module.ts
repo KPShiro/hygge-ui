@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CompanyModule } from '@features/company/company.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,6 +31,7 @@ const ngrx = [
 const features = [
     AuthModule.forRoot(),
     SnackbarModule.forRoot(),
+    CompanyModule.forRoot(),
 ];
 
 @NgModule({

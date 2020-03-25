@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { VerifyInvitationGuard } from './guards/verify-invitation/verify-invitation.guard';
+import { VerifyInvitationGuard } from '@features/company/guards/verify-invitation/verify-invitation.guard';
 import { InvalidInvitationComponent } from './components/invalid-invitation/invalid-invitation.component';
-import { InvitationResolver } from './guards/invitation-resolver/invitation-resolver.guard';
+import { InvitationResolver } from '@features/company/guards/invitation-resolver/invitation-resolver.guard';
 
 
 const routes: Routes = [
