@@ -1,5 +1,5 @@
 export interface IInvitation {
-    id: string;
+    _id: string;
     issuerId: string;
     companyId: string;
     email: string;
