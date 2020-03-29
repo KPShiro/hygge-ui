@@ -14,7 +14,7 @@ export class CompanyModule {
         }
     }
 
-    public static forRoot(): ModuleWithProviders {
+    public static forRoot(): ModuleWithProviders<CompanyModule> {
         return {
             ngModule: CompanyModule,
             providers: [

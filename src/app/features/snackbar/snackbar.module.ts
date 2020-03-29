@@ -24,7 +24,7 @@ export class SnackbarModule {
         this.service.init();
     }
 
-    public static forRoot(config?: ISnackbarConfig): ModuleWithProviders {
+    public static forRoot(config?: ISnackbarConfig): ModuleWithProviders<SnackbarModule> {
         return {
             ngModule: SnackbarModule,
             providers: [

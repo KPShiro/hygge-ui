@@ -16,7 +16,7 @@ export class SnackbarComponent {
     @Output() public afterOpening: EventEmitter<void> = new EventEmitter();
     @Output() public afterClosing: EventEmitter<void> = new EventEmitter();
 
-    @ViewChild('snackbar', { static: false }) public snackbar: ElementRef;
+    @ViewChild('snackbar') public snackbar: ElementRef;
 
     public constructor(
         @Inject(SNACKBAR_CONFIG) public readonly config: ISnackbarConfig,
