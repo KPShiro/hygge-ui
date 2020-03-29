@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from '@pages/core/components/app/app.component';
+import { AppComponent } from '@app/app-container/app.component';
 import { SnackbarModule } from '@features/snackbar/snackbar.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
