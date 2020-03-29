@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IsAuthenticatedGuard } from '@features/auth/guards/is-authenticated.guard';
 
 
 const routes: Routes = [
@@ -10,9 +9,8 @@ const routes: Routes = [
         redirectTo: '/sign-in',
     },
     {
-        path: 'dashboard',
-        loadChildren: () => import('@pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
-        canActivate: [IsAuthenticatedGuard],
+        path: '',
+        loadChildren: () => import('@pages/shell-authenticated/shell-authenticated.module').then((m) => m.ShellAuthenticatedModule),
     },
     {
         path: 'sign-in',

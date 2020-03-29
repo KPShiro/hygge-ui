@@ -3,16 +3,19 @@ import { AuthFacadeService } from '@features/auth/services/auth-facade/auth-faca
 
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    selector: 'app-main-navbar',
+    templateUrl: './main-navbar.component.html',
+    styleUrls: ['./main-navbar.component.scss']
 })
-export class DashboardComponent {
+export class MainNavbarComponent {
+
     public constructor(
         private readonly _authFacade: AuthFacadeService,
     ) { }
 
+
     public signOut(): void {
         this._authFacade.signOut();
     }
+
 }
