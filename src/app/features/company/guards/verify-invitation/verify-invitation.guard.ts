@@ -43,6 +43,6 @@ export class VerifyInvitationGuard implements CanActivate {
     }
 
     private navigateToInvalidInvitationPage(): void {
-        this._router.navigate(['/sign-up/invalid-invitation']);
+        this._router.navigate(['/invalid-invitation']);
     }
 }

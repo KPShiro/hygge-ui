@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from '@pages/not-found/not-found.component';
+import { InvalidInvitationComponent } from '@pages/invalid-invitation/invalid-invitation.component';
 
 
 const routes: Routes = [
@@ -21,8 +23,12 @@ const routes: Routes = [
         loadChildren: () => import('@pages/sign-up/sign-up.module').then((m) => m.SignUpModule),
     },
     {
+        path: 'invalid-invitation',
+        component: InvalidInvitationComponent,
+    },
+    {
         path: '**',
-        loadChildren: () => import('@pages/core/core.module').then((m) => m.CoreModule),
+        component: NotFoundComponent,
     }
 ];
 
