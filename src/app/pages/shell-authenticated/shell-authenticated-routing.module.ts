@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShellAuthenticatedComponent } from './container/shell-authenticated.component';
 import { IsAuthenticatedGuard } from '@features/auth/guards/is-authenticated.guard';
+import { CompanyProfileComponent } from '@pages/company-profile/company-profile.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 loadChildren: () => import('@pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
+            },
+            {
+                path: 'profile/company',
+                component: CompanyProfileComponent,
             },
         ]
     },

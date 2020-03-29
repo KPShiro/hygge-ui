@@ -1,4 +1,8 @@
 <div class="container-fluid main-navbar">
-    <div class="logo" [routerLink]="['/dashboard']">HYGGE Portal</div>
-    <button class="btn btn-primary" (click)="signOut()">Sign out</button>
+    <button class="btn btn-light" [routerLink]="['/dashboard']">HYGGE</button>
+    <div>
+        <button class="mr-2 btn btn-light" [routerLink]="['/dashboard']">Dashboard</button>
+        <button class="mr-2 btn btn-light" [routerLink]="['/profile/company']">Company profile</button>
+        <button class="btn btn-primary" (click)="signOut()">Sign out</button>
+    </div>
 </div>
