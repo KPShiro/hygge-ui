@@ -8,26 +8,32 @@
                     <input id="username" class="form-control" type="email"
                         [placeholder]="'page_sign_up.form.placeholder_username' | translate" formControlName="username"
                         aria-describedby="usernameHelp"
-                        [ngClass]="{ 'is-invalid': usernameControl.invalid && usernameControl.touched, 'is-valid': usernameControl.valid && usernameControl.touched }">
-                    <small class="text-danger" *ngIf="usernameControl.hasError('isTaken')">
-                        {{ 'page_sign_up.errors.USERNAME_TAKEN' | translate }}
+                        [ngClass]="{ 'is-invalid': usernameControl.invalid  && usernameControl.dirty, 'is-valid': usernameControl.valid }">
+                    <small class="form-text text-muted">
+                        {{ 'page_sign_up.form.hint_username' | translate }}
+                    </small>
+                    <small class="text-danger" *ngIf="usernameControl.hasError('not-available')">
+                        {{ 'errors.USERNAME_TAKEN' | translate }}
                     </small>
                 </div>
             </div>
             <div formGroupName="passwordForm" class="row">
-                <div class="form-group col-6 pr-2">
+                <div class="form-group col-12">
                     <label for="password" [innerHTML]="'page_sign_up.form.label_password' | translate"></label>
                     <input id="password" class="form-control" type="password"
                         [placeholder]="'page_sign_up.form.placeholder_password' | translate" formControlName="password"
-                        [ngClass]="{ 'is-invalid': passwordControl.invalid && passwordControl.touched }">
+                        [ngClass]="{ 'is-invalid': passwordControl.invalid && passwordControl.dirty }">
                 </div>
-                <div class="form-group col-6 pl-0">
+                <div class="form-group col-12">
                     <label for="confirmPassword"
                         [innerHTML]="'page_sign_up.form.label_confirm_password' | translate"></label>
                     <input id="confirmPassword" class="form-control" type="password"
                         [placeholder]="'page_sign_up.form.placeholder_confirm_password' | translate"
                         formControlName="confirmPassword"
-                        [ngClass]="{ 'is-invalid': confirmPasswordControl.invalid && confirmPasswordControl.touched }">
+                        [ngClass]="{ 'is-invalid': confirmPasswordControl.invalid && confirmPasswordControl.dirty }">
+                    <small class="text-danger" *ngIf="confirmPasswordControl.hasError('no-match')">
+                        {{ 'errors.PASSWORD_NO_MATCH' | translate }}
+                    </small>
                 </div>
             </div>
             <div formGroupName="personaForm" class="row">
@@ -36,13 +42,13 @@
                     <input id="firstName" class="form-control" type="text"
                         [placeholder]="'page_sign_up.form.placeholder_first_name' | translate"
                         formControlName="firstName"
-                        [ngClass]="{ 'is-invalid': firstNameControl.invalid && firstNameControl.touched }">
+                        [ngClass]="{ 'is-invalid': firstNameControl.invalid && firstNameControl.dirty }">
                 </div>
                 <div class="form-group col-6 pl-0">
                     <label for="lastName" [innerHTML]="'page_sign_up.form.label_last_name' | translate"></label>
                     <input id="lastName" class="form-control" type="text"
                         [placeholder]="'page_sign_up.form.placeholder_last_name' | translate" formControlName="lastName"
-                        [ngClass]="{ 'is-invalid': lastNameControl.invalid && lastNameControl.touched }">
+                        [ngClass]="{ 'is-invalid': lastNameControl.invalid && lastNameControl.dirty }">
                 </div>
             </div>
             <div class="actions mt-5 d-flex justify-content-end">

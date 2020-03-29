@@ -12,8 +12,9 @@
     "page_sign_up": {
         "title": "Creating new account",
         "form": {
-            "label_username": "Username",
+            "label_username": "Email address",
             "placeholder_username": "user@company.com",
+            "hint_username": "It will be also your default username",
             "label_password": "Password",
             "placeholder_password": "************",
             "label_confirm_password": "Confirm password",
@@ -22,6 +23,7 @@
             "placeholder_first_name": "John",
             "label_last_name": "Last name",
             "placeholder_last_name": "Garmandia",
+            "label_newsletter": "Receive updates about new features and products via email address",
             "btn_submit": "Complete and sign in"
         }
     },
@@ -31,6 +33,7 @@
     },
     "errors": {
         "CREDENTIALS_INVALID": "Invalid username or password",
-        "USERNAME_TAKEN": "This username is already taken"
+        "USERNAME_TAKEN": "This username is already taken",
+        "PASSWORD_NO_MATCH": "Passwords are not identical"
     }
 }

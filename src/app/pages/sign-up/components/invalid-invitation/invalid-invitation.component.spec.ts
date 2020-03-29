@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InvalidInvitationComponent } from './invalid-invitation.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 describe('InvalidInvitationComponent', () => {
@@ -8,9 +9,11 @@ describe('InvalidInvitationComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [InvalidInvitationComponent]
-        })
-            .compileComponents();
+            declarations: [InvalidInvitationComponent],
+            imports: [
+                TranslateModule.forRoot(),
+            ]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

@@ -10,8 +10,10 @@ export function PasswordMatch(controlName: string, matchingControlName: string) 
         }
 
         if (control.value !== matchingControl.value) {
-            matchingControl.setErrors({ passwordMatch: true });
+            control.setErrors({ 'no-match': true });
+            matchingControl.setErrors({ 'no-match': true });
         } else {
+            control.setErrors(null);
             matchingControl.setErrors(null);
         }
     };

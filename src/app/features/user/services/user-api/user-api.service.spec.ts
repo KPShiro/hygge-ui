@@ -1,20 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { CompanyApiService } from './company-api.service';
+import { UserApiService } from './user-api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
-describe('CompanyApiService', () => {
+describe('UserApiService', () => {
     beforeEach(() => TestBed.configureTestingModule({
         imports: [
             HttpClientTestingModule,
         ],
         providers: [
-            CompanyApiService,
+            UserApiService,
         ],
     }));
 
     it('should be created', () => {
-        const service: CompanyApiService = TestBed.get(CompanyApiService);
+        const service: UserApiService = TestBed.get(UserApiService);
         expect(service).toBeTruthy();
     });
 });

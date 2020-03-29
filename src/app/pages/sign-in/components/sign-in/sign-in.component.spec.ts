@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignInComponent } from './sign-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthFacadeService } from '@features/auth/services/auth-facade/auth-facade.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 class AuthFacadeServiceMock { }
 
@@ -13,6 +14,7 @@ describe('SignInComponent', () => {
         TestBed.configureTestingModule({
             declarations: [SignInComponent],
             imports: [
+                TranslateModule.forRoot(),
                 ReactiveFormsModule,
             ],
             providers: [

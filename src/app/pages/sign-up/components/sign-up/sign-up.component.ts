@@ -4,6 +4,9 @@ import { Subject } from 'rxjs';
 import { PasswordMatch } from '@pages/sign-up/validators/password-match/password-match.validator';
 import { ActivatedRoute } from '@angular/router';
 import { IInvitation } from '@features/company/interfaces/invitation.interface';
+import { usernameAvailabilityAsyncValidator } from '@pages/sign-up/validators/username-availability/username-availability.validator';
+import { UserFacadeService } from '@features/user/services/user-facade/user-facade.service';
+import { ICreateUserDto } from '@features/user/interfaces/create-user-dto.interface';
 
 
 @Component({
@@ -15,33 +18,35 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     public signUpForm?: FormGroup;
 
+    private readonly _destroy: Subject<void> = new Subject();
+
+    private _passwordForm?: FormGroup;
+    private _personaForm?: FormGroup;
+
     public get usernameControl(): FormControl {
-        return this.personaForm.get('username') as FormControl;
+        return this._personaForm.get('username') as FormControl;
     }
 
     public get firstNameControl(): FormControl {
-        return this.personaForm.get('firstName') as FormControl;
+        return this._personaForm.get('firstName') as FormControl;
     }
 
     public get lastNameControl(): FormControl {
-        return this.personaForm.get('lastName') as FormControl;
+        return this._personaForm.get('lastName') as FormControl;
     }
 
     public get confirmPasswordControl(): FormControl {
-        return this.passwordForm.get('confirmPassword') as FormControl;
+        return this._passwordForm.get('confirmPassword') as FormControl;
     }
 
     public get passwordControl(): FormControl {
-        return this.passwordForm.get('password') as FormControl;
+        return this._passwordForm.get('password') as FormControl;
     }
-
-    private readonly _destroy: Subject<void> = new Subject();
-    private passwordForm?: FormGroup;
-    private personaForm?: FormGroup;
 
     public constructor(
         private readonly _formBuilder: FormBuilder,
         private readonly _route: ActivatedRoute,
+        private readonly _userFacade: UserFacadeService,
     ) { }
 
     public get isFormValid(): boolean {
@@ -57,6 +62,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.buildForm();
+        this.prefillForm();
     }
 
     public ngOnDestroy(): void {
@@ -65,22 +71,34 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     public createAccount(): void {
-        // TODO: Implement account creation
+        const invitationDetails: IInvitation = this._route.snapshot.data.invitationDetails;
+
+        const data: ICreateUserDto = {
+            invitationId: invitationDetails._id,
+            companyId: invitationDetails.companyId,
+            email: this.usernameControl.value,
+            password: this.passwordControl.value,
+            firstName: this.firstNameControl.value,
+            lastName: this.lastNameControl.value,
+        };
+
+        this._userFacade.createAccount(data);
     }
 
     private buildForm(): void {
-        const invitationDetails: IInvitation = this._route.snapshot.data.invitationDetails;
-
-        this.personaForm = this._formBuilder.group({
+        this._personaForm = this._formBuilder.group({
             username: [
-                invitationDetails.email,
-                [Validators.required, Validators.email],
+                null,
+                {
+                    validators: [Validators.required, Validators.email],
+                    asyncValidators: [usernameAvailabilityAsyncValidator(this._userFacade)],
+                }
             ],
             firstName: [null, [Validators.required]],
             lastName: [null, [Validators.required]],
         });
 
-        this.passwordForm = this._formBuilder.group({
+        this._passwordForm = this._formBuilder.group({
             password: [null, [Validators.required]],
             confirmPassword: [null, [Validators.required]],
         }, {
@@ -90,8 +108,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
         });
 
         this.signUpForm = this._formBuilder.group({
-            passwordForm: this.passwordForm,
-            personaForm: this.personaForm,
+            passwordForm: this._passwordForm,
+            personaForm: this._personaForm,
         });
+    }
+
+    private prefillForm(): void {
+        const invitationDetails: IInvitation = this._route.snapshot.data.invitationDetails;
+        this.usernameControl.setValue(invitationDetails.email);
+        this.usernameControl.markAsTouched();
     }
 }
