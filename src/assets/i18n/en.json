@@ -29,7 +29,11 @@
     },
     "page_invalid_invitation": {
         "title": "Invalid invitation",
-        "description": "We were not able to validate your invitaion. Please try again in a few seconds. If this issue is repeating, please contact our support team."
+        "description": "Please try again in a few seconds. If this issue is repeating, contact our support team."
+    },
+    "page_not_found": {
+        "title": "Page not found",
+        "description": "We were not able to find a page that you are looking for. <br> Please try again or try another page."
     },
     "errors": {
         "CREDENTIALS_INVALID": "Invalid username or password",
