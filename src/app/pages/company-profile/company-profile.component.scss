@@ -1,0 +1,21 @@
+@import 'src/scss/variables';
+
+.form-field {
+    .label {
+        font-size: 0.9em;
+        line-height: 1em;
+        opacity: 0.64;
+    }
+
+    .value {
+        line-height: 1.2em;
+    }
+}
+
+.invitation-card {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    color: $hg-color-text-dark;
+    padding: 1.6em;
+}

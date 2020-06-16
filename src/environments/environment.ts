@@ -30,6 +30,8 @@ export const environment = {
         invite: '/invite',
         validateInvitation: '/invite/validate',
         getInvitationDetils: '/invite/details',
+        getInvitations: '/invite/list',
+        employees: '/employees',
       },
     },
   },

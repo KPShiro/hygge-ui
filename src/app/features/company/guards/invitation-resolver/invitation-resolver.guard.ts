@@ -5,9 +5,7 @@ import { CompanyApiService } from '@features/company/services/company-api/compan
 import { IInvitation } from '@features/company/interfaces/invitation.interface';
 
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class InvitationResolver implements Resolve<any> {
     public constructor(
         private readonly _companyApi: CompanyApiService,

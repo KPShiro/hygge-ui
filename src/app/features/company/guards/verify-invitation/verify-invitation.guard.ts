@@ -6,9 +6,7 @@ import { CompanyApiService } from '@features/company/services/company-api/compan
 import { map, catchError } from 'rxjs/operators';
 
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class VerifyInvitationGuard implements CanActivate {
     public constructor(
         private readonly _router: Router,

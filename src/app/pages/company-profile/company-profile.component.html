@@ -1,8 +1,53 @@
 <div class="container-fluid">
     <h3>Company profile</h3>
-    <p class="text-muted">company-profile works!</p>
 
-    <div class="employee-grid">
-        <app-employee-card></app-employee-card>
+    
+    <div class="mt-3 mb-3 row">
+        <div class="col col-md-5">
+            <form [formGroup]="invitationForm" (submit)="sendInvitation()">
+                <div class="input-group">
+                    <input id="invitation-email" class="form-control" type="email" placeholder="user@email.com" formControlName="email">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Invite</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <div *ngIf="invitations.length > 0">
+        <h5>Pending invitations</h5>
+
+        <div class="invitations-grid">
+            <div class="invitation-card mr-2" *ngFor="let invitation of invitations">
+                <div class="form-field">
+                    <div class="label">
+                        Invitation id
+                    </div>
+                    <div class="value">
+                        {{ invitation._id }}
+                    </div>
+                </div>
+
+                <div class="form-field mt-2">
+                    <div class="label">
+                        Invited person
+                    </div>
+                    <div class="value">
+                        {{ invitation.email }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- <div>
+        <h5>Coworkers</h5>
+
+        <div class="employee-grid">
+            <app-employee-card *ngFor="let employee of employees" [data]="employee"></app-employee-card>
+        </div>
+    </div> -->
 </div>

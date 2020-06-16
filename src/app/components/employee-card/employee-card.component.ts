@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
     selector: 'app-employee-card',
     templateUrl: './employee-card.component.html',
-    styleUrls: ['./employee-card.component.scss']
+    styleUrls: ['./employee-card.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeCardComponent { }
+export class EmployeeCardComponent {
+    @Input() public data?: any;
+}

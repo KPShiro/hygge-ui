@@ -27,4 +27,20 @@ export class CompanyApiService {
             catchError((response) => throwError(response)),
         );
     }
+
+    public getEmployees(): Observable<any[]> {
+        const url = environment.api.companyAccount.url + environment.api.companyAccount.endpoints.employees;
+
+        return this._httpClient.get<any[]>(url).pipe(
+            catchError((response) => throwError(response)),
+        );
+    }
+
+    public getInvitations(): Observable<IInvitation[]> {
+        const url = environment.api.companyAccount.url + environment.api.companyAccount.endpoints.getInvitations;
+
+        return this._httpClient.get<any[]>(url).pipe(
+            catchError((response) => throwError(response)),
+        );
+    }
 }
