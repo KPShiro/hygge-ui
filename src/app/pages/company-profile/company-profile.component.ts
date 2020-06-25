@@ -28,7 +28,6 @@ export class CompanyProfileComponent implements OnInit {
     this.invitations = this._route.snapshot.data.invitations;
 
     console.table(this.employees);
-    console.table(this.invitations);
 
     this.invitationForm = this._fb.group({
       email: [null, [Validators.email, Validators.required]],

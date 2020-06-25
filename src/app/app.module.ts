@@ -16,7 +16,6 @@ import { CompanyModule } from '@features/company/company.module';
 import { UserModule } from '@features/user/user.module';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { InvalidInvitationComponent } from '@pages/invalid-invitation/invalid-invitation.component';
-import { EmployeeCardComponent } from './components/employee-card/employee-card.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +43,6 @@ const features = [
         AppComponent,
         NotFoundComponent,
         InvalidInvitationComponent,
-        EmployeeCardComponent,
     ],
     imports: [
         BrowserModule,

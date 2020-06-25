@@ -1,53 +1,51 @@
 <div class="container-fluid">
-    <h3>Company profile</h3>
-
-    
-    <div class="mt-3 mb-3 row">
+    <div *ngIf="employees.length > 0" class="row">
         <div class="col col-md-5">
-            <form [formGroup]="invitationForm" (submit)="sendInvitation()">
-                <div class="input-group">
-                    <input id="invitation-email" class="form-control" type="email" placeholder="user@email.com" formControlName="email">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary">Invite</button>
-                    </div>
-                </div>
-            </form>
+            <h5><i class="uil uil-user-circle"></i> Members</h5>
+            <table class="table table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Full name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.role }}</td>
+                        <td class="text-center">
+                            <i class="uil uil-ellipsis-v"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div *ngIf="invitations.length > 0">
-        <h5>Pending invitations</h5>
-
-        <div class="invitations-grid">
-            <div class="invitation-card mr-2" *ngFor="let invitation of invitations">
-                <div class="form-field">
-                    <div class="label">
-                        Invitation id
-                    </div>
-                    <div class="value">
-                        {{ invitation._id }}
-                    </div>
-                </div>
-
-                <div class="form-field mt-2">
-                    <div class="label">
-                        Invited person
-                    </div>
-                    <div class="value">
-                        {{ invitation.email }}
-                    </div>
-                </div>
-            </div>
+    <div *ngIf="invitations.length > 0" class="row mt-3">
+        <div class="col col-md-5">
+            <h5><i class="uil uil-envelope-question"></i> Pending invitations</h5>
+            <table class="table table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invitation of invitations">
+                        <td>{{ invitation._id }}</td>
+                        <td>{{ invitation.email }}</td>
+                        <td class="text-center">
+                            <i class="uil uil-ellipsis-v"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <br>
-
-    <!-- <div>
-        <h5>Coworkers</h5>
-
-        <div class="employee-grid">
-            <app-employee-card *ngFor="let employee of employees" [data]="employee"></app-employee-card>
-        </div>
-    </div> -->
 </div>
