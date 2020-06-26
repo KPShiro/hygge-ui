@@ -15,6 +15,7 @@ export const environment = {
         create: '/create',
         delete: '/delete',
         isUsernameAvailable: '/username/available',
+        linkSocialAccount: '/link/socialAccount',
       },
     },
     companyAccount: {
@@ -26,4 +27,13 @@ export const environment = {
       },
     },
   },
+  integrations: {
+    facebook: {
+      sdk: {
+        src: 'https://connect.facebook.net/en_US/sdk.js',
+        appId: '608031413175152',
+        apiVersion: 'v7.0',
+      }
+    },
+  }
 };

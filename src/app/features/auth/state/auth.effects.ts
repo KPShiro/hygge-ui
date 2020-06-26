@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { of } from 'rxjs';
 import { AuthStateService } from '../services/auth-state/auth-state.service';
+import { FacebookSdkService } from '@features/facebook/services/facebook-sdk/facebook-sdk.service';
 
 
 @Injectable()
@@ -37,6 +38,7 @@ export class AuthEffects {
 
     public signOut$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signOut),
+        mergeMap(() => this._facebookSdkService.logoutFromFacebook()),
         mergeMap(() => this._authApi.signOut().pipe(
             map(() => actions.signOutSucceeded()),
             catchError((errorResponse) => of(actions.signOutFailed({ payload: errorResponse }))),
@@ -55,5 +57,6 @@ export class AuthEffects {
         private readonly _router: Router,
         private readonly _route: ActivatedRoute,
         private readonly _authStateService: AuthStateService,
+        private readonly _facebookSdkService: FacebookSdkService,
     ) { }
 }

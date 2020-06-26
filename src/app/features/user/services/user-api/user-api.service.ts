@@ -22,4 +22,10 @@ export class UserApiService {
 
         return this._httpClient.post<any>(url, dto);
     }
+
+    public linkSocialAccount(dto: any): Observable<any> {
+        const url = `${environment.api.userAccount.url}${environment.api.userAccount.endpoints.linkSocialAccount}`;
+
+        return this._httpClient.post<any>(url, dto);
+    }
 }

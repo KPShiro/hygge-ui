@@ -16,6 +16,7 @@ import { CompanyModule } from '@features/company/company.module';
 import { UserModule } from '@features/user/user.module';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { InvalidInvitationComponent } from '@pages/invalid-invitation/invalid-invitation.component';
+import { FacebookModule } from '@features/facebook/facebook.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -36,6 +37,7 @@ const features = [
     UserModule.forRoot(),
     CompanyModule.forRoot(),
     SnackbarModule.forRoot(),
+    FacebookModule.forRoot(),
 ];
 
 @NgModule({
