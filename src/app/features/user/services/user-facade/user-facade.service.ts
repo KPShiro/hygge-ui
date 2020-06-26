@@ -32,8 +32,6 @@ export class UserFacadeService {
             switchMap((response: any) => {
                 const authResponse: any = response.authResponse;
 
-                console.log(response);
-
                 if (authResponse !== undefined && authResponse !== null) {
                     return this._userApi.linkSocialAccount({
                         user_id: authResponse.userID,

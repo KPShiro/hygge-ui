@@ -25,6 +25,10 @@ const routes: Routes = [
                 },
                 component: CompanyProfileComponent,
             },
+            {
+                path: 'profile/user',
+                loadChildren: () => import('@pages/user-profile/user-profile.module').then((m) => m.UserProfileModule)
+            },
         ]
     },
 ];
