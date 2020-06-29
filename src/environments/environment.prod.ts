@@ -15,7 +15,6 @@ export const environment = {
         create: '/create',
         delete: '/delete',
         isUsernameAvailable: '/username/available',
-        linkSocialAccount: '/link/socialAccount',
       },
     },
     companyAccount: {

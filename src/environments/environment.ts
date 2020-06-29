@@ -14,12 +14,11 @@ export const environment = {
       },
     },
     userAccount: {
-      url: 'http://localhost:3000/user-account',
+      url: 'http://localhost:3000/user',
       endpoints: {
         create: '/create',
         delete: '/delete',
         isUsernameAvailable: '/username/available',
-        linkSocialAccount: '/link/socialAccount',
       },
     },
     companyAccount: {

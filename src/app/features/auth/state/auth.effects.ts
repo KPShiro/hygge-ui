@@ -1,14 +1,12 @@
 import * as actions from './auth.actions';
 
 import { Injectable } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../services/auth-api/auth-api.service';
 import { mergeMap, catchError, map, tap } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router';
-import { isNullOrUndefined } from 'util';
-import { of } from 'rxjs';
 import { AuthStateService } from '../services/auth-state/auth-state.service';
-import { FacebookSdkService } from '@features/facebook/services/facebook-sdk/facebook-sdk.service';
+import { of } from 'rxjs';
 
 
 @Injectable()
@@ -28,7 +26,7 @@ export class AuthEffects {
         tap((token) => this._authStateService.saveToken(token)),
         map(() => this._route.snapshot.queryParams.returnUrl),
         tap((returnUrl) => {
-            if (!isNullOrUndefined(returnUrl)) {
+            if (returnUrl !== undefined && returnUrl !== null) {
                 this._router.navigateByUrl(returnUrl);
             } else {
                 this._router.navigate(['/dashboard']);
@@ -38,7 +36,6 @@ export class AuthEffects {
 
     public signOut$ = createEffect(() => this._actions$.pipe(
         ofType(actions.signOut),
-        mergeMap(() => this._facebookSdkService.logoutFromFacebook()),
         mergeMap(() => this._authApi.signOut().pipe(
             map(() => actions.signOutSucceeded()),
             catchError((errorResponse) => of(actions.signOutFailed({ payload: errorResponse }))),
@@ -57,6 +54,5 @@ export class AuthEffects {
         private readonly _router: Router,
         private readonly _route: ActivatedRoute,
         private readonly _authStateService: AuthStateService,
-        private readonly _facebookSdkService: FacebookSdkService,
     ) { }
 }
