@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { isNullOrUndefined } from 'util';
 import { CompanyApiService } from '@features/company/services/company-api/company-api.service';
 import { map, catchError } from 'rxjs/operators';
 
@@ -16,7 +15,7 @@ export class VerifyInvitationGuard implements CanActivate {
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const invitationId = route.queryParams.invitationId;
 
-        if (isNullOrUndefined(invitationId)) {
+        if (invitationId !== null && invitationId !== undefined) {
             this.navigateToInvalidInvitationPage();
 
             return false;
