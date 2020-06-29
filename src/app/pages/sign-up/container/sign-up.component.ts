@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IInvitation } from '@features/company/interfaces/invitation.interface';
 import { usernameAvailabilityAsyncValidator } from '@pages/sign-up/validators/username-availability/username-availability.validator';
 import { UserFacadeService } from '@features/user/services/user-facade/user-facade.service';
-import { ICreateUserDto } from '@features/user/interfaces/create-user-dto.interface';
+import { ICreateUserAccountDto } from '@features/user/dto/create-user-account.dto';
 
 
 @Component({
@@ -73,7 +73,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     public createAccount(): void {
         const invitationDetails: IInvitation = this._route.snapshot.data.invitationDetails;
 
-        const data: ICreateUserDto = {
+        const data: ICreateUserAccountDto = {
             invitationId: invitationDetails._id,
             companyId: invitationDetails.companyId,
             email: this.usernameControl.value,

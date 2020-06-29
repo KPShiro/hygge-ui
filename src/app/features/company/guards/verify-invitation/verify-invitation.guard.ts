@@ -15,7 +15,7 @@ export class VerifyInvitationGuard implements CanActivate {
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const invitationId = route.queryParams.invitationId;
 
-        if (invitationId !== null && invitationId !== undefined) {
+        if (invitationId === null || invitationId === undefined) {
             this.navigateToInvalidInvitationPage();
 
             return false;

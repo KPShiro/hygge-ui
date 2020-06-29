@@ -4,7 +4,7 @@ import * as authActions from '@features/auth/state/auth.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserApiService } from '../services/user-api/user-api.service';
-import { catchError, mergeMap, map, tap } from 'rxjs/operators';
+import { catchError, mergeMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 
@@ -27,12 +27,10 @@ export class UserEffects {
     public createAccountFailed$ = createEffect(() => this._actions$.pipe(
         ofType(userActions.createAccountFailed),
         map((action) => action.payload),
-        tap((res) => console.log(res)),
     ), { dispatch: false });
 
     public constructor(
         private readonly _actions$: Actions,
         private readonly _userApi: UserApiService,
-        // private readonly _router: Router,
     ) { }
 }

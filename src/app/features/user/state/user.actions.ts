@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ICreateUserDto } from '../interfaces/create-user-dto.interface';
+import { ICreateUserAccountDto } from '../dto/create-user-account.dto';
 import { IToken } from '@features/auth/interfaces/token.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -10,7 +10,7 @@ function createActionName(name: string): string {
 
 export const createAccount = createAction(
     createActionName('Create account'),
-    props<{ payload: ICreateUserDto }>(),
+    props<{ payload: ICreateUserAccountDto }>(),
 );
 
 export const createAccountSucceeded = createAction(

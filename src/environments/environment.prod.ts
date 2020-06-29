@@ -10,11 +10,14 @@ export const environment = {
       },
     },
     userAccount: {
-      url: 'http://localhost:3000/user-account',
+      url: 'http://localhost:3000/user',
       endpoints: {
         create: '/create',
         delete: '/delete',
-        isUsernameAvailable: '/username/available',
+        deleteForever: '/deleteForever',
+        check: {
+          username: '/check/username'
+        }
       },
     },
     companyAccount: {
@@ -23,16 +26,15 @@ export const environment = {
         create: '/create',
         delete: '/delete',
         isNameAvailable: '/company-name/available',
+        employees: '/employees',
+        invitation: {
+          create: '/invitation/create',
+          delete: '/invitation/delete',
+          validate: '/invitation/validate',
+          details: '/invitation/details',
+          list: '/invitation/list'
+        }
       },
     },
   },
-  integrations: {
-    facebook: {
-      sdk: {
-        src: 'https://connect.facebook.net/en_US/sdk.js',
-        appId: '608031413175152',
-        apiVersion: 'v7.0',
-      }
-    },
-  }
 };

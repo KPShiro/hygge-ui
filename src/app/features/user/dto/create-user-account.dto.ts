@@ -1,4 +1,4 @@
-export interface ICreateUserDto {
+export interface ICreateUserAccountDto {
     invitationId: string;
     companyId: string;
     email: string;

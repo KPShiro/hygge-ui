@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IInvitation } from '@features/company/interfaces/invitation.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CompanyFacadeService } from '@features/company/services/company-facade/company-facade.service';
+import { switchMap } from 'rxjs/operators';
+import { UserFacadeService } from '@features/user/services/user-facade/user-facade.service';
 
 
 @Component({
@@ -19,6 +22,8 @@ export class CompanyProfileComponent implements OnInit {
   public constructor(
     private readonly _fb: FormBuilder,
     private readonly _route: ActivatedRoute,
+    private readonly _companyFacade: CompanyFacadeService,
+    private readonly _userFacade: UserFacadeService,
   ) { }
 
   public ngOnInit(): void {
@@ -30,8 +35,38 @@ export class CompanyProfileComponent implements OnInit {
     });
   }
 
-  public sendInvitation(): void {
-    console.log(this.invitationForm.value);
+  public createInvitation(): void {
+    const email: string = this.invitationForm.value;
+
+    if (email === '' || email === undefined || email === null) {
+      return;
+    }
+
+    this._companyFacade.createInvitation(email).pipe(
+      switchMap(() => this._companyFacade.getInvitations()),
+    ).subscribe((invitations) => {
+      this.invitations = invitations;
+      this.invitationForm.reset();
+    });
+  }
+
+  public deleteInvitation(id: string): void {
+    this._companyFacade.deleteInvitation(id).pipe(
+      switchMap(() => this._companyFacade.getInvitations()),
+    ).subscribe((invitations) => {
+      this.invitations = invitations;
+    });
+  }
+
+  public deleteUserAccount(id: string): void {
+    this._userFacade.deleteAccount({
+      deleteForever: true,
+      id,
+    }).pipe(
+      switchMap(() => this._companyFacade.getEmployees()),
+    ).subscribe((employees) => {
+      this.employees = employees;
+    });
   }
 
 }
