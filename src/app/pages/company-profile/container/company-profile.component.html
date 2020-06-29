@@ -2,26 +2,7 @@
     <div *ngIf="employees.length > 0" class="row">
         <div class="col col-md-5">
             <h5><i class="uil uil-user-circle"></i> Members</h5>
-            <table class="table table-hover mt-3">
-                <thead>
-                    <tr>
-                        <th scope="col">Full name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let employee of employees">
-                        <td>{{ employee.firstName }} {{ employee.lastName }}</td>
-                        <td>{{ employee.email }}</td>
-                        <td>{{ employee.role }}</td>
-                        <td class="text-center">
-                            <button class="btn btn-light" (click)="deleteUserAccount(employee.id)"><i class="uil uil-trash"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <app-employee-card *ngFor="let employee of employees" [data]="employee" (delete)="deleteUserAccount($event)"></app-employee-card>
         </div>
     </div>
 

@@ -59,14 +59,15 @@ export class CompanyProfileComponent implements OnInit {
   }
 
   public deleteUserAccount(id: string): void {
-    this._userFacade.deleteAccount({
-      deleteForever: true,
-      id,
-    }).pipe(
-      switchMap(() => this._companyFacade.getEmployees()),
-    ).subscribe((employees) => {
-      this.employees = employees;
-    });
+    console.log(id);
+    // this._userFacade.deleteAccount({
+    //   deleteForever: true,
+    //   id,
+    // }).pipe(
+    //   switchMap(() => this._companyFacade.getEmployees()),
+    // ).subscribe((employees) => {
+    //   this.employees = employees;
+    // });
   }
 
 }

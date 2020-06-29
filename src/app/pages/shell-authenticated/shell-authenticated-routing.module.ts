@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShellAuthenticatedComponent } from './container/shell-authenticated.component';
 import { IsAuthenticatedGuard } from '@features/auth/guards/is-authenticated.guard';
-import { CompanyProfileComponent } from '@pages/company-profile/company-profile.component';
-import { EmployeesResolver } from '@features/company/guards/employees-resolver/employees-resolver.guard';
-import { InvitationsListResolver } from '@features/company/guards/invitations-list-resolver/invitations-list-resolver.guard';
 
 
 const routes: Routes = [
@@ -19,11 +16,7 @@ const routes: Routes = [
             },
             {
                 path: 'profile/company',
-                resolve: {
-                    employees: EmployeesResolver,
-                    invitations: InvitationsListResolver,
-                },
-                component: CompanyProfileComponent,
+                loadChildren: () => import('@pages/company-profile/company-profile.module').then((m) => m.CompanyProfileModule),
             },
             {
                 path: 'profile/user',

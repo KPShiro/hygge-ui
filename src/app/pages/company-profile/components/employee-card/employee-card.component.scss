@@ -1,0 +1,37 @@
+:host {
+    & {
+        display: block;
+        padding: 1em;
+        border-radius: 3px;
+        border: 1px solid #f4f5f7;
+        transition: border-color ease-in-out 0.3s;
+    }
+
+    &:hover {
+        border-color: #EBECF0;
+    }
+}
+
+.name {
+    font-size: 1.2em;
+}
+
+.hg-btn {
+    & {
+        border-radius: 3px;
+        box-shadow: none;
+        border-color: transparent;
+        padding: 0.4em 0.6em;
+        background-color: transparent;
+    }
+}
+
+.hg-btn.hg-btn-light {
+    & {
+        background-color: #f4f5f7;
+    }
+
+    &:hover {
+        background-color: #EBECF0;
+    }
+}
