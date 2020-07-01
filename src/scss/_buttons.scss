@@ -3,3 +3,7 @@
 .btn:disabled {
   cursor: not-allowed;
 }
+
+.btn.btn-light {
+  background-color: $hg-color-n-20;
+}

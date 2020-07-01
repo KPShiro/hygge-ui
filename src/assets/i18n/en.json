@@ -1,12 +1,12 @@
 {
     "page_sign_in": {
-        "title": "HYGGE Portal",
+        "title": "Log in.",
         "form": {
             "label_username": "Username",
-            "placeholder_username": "user@company.com",
+            "placeholder_username": "user@example.com",
             "label_password": "Password",
             "placeholder_password": "************",
-            "btn_submit": "Sign in"
+            "btn_submit": "Log in"
         }
     },
     "page_sign_up": {

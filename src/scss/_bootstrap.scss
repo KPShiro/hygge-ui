@@ -1,0 +1,10 @@
+@import './variables';
+
+$theme-colors: (
+  "primary": $hg-color-primary,
+  "danger": $hg-color-r-300,
+  "success": $hg-color-g-300,
+  "warning": $hg-color-y-300,
+);
+
+

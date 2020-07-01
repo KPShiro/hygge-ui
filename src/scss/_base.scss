@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import './variables';
+@import './bootstrap';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import './buttons';
 
 :root {
   font-family: 'Lato', sans-serif;
   font-size: $hg-font-size;
-  color: $hg-color-text-dark;
+  color: $hg-color-text-dark;  
 }
 
 * {
@@ -16,6 +17,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: $hg-color-n-10;
 }
 
 .full-page {
@@ -23,7 +25,7 @@ body {
 }
 
 .container-fluid {
-  padding: 24px;
+  padding: 24px 40px;
 }
 
 .label-value-pair {

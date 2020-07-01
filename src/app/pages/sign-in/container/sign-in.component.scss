@@ -1,0 +1,17 @@
+@import 'src/scss/_variables';
+
+.sign-in-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $hg-color-n-40;
+}
+
+.sign-in-form {
+    min-width: 512px;
+    max-width: 640px;
+    padding: 2.5em;
+    background-color: transparentize($hg-color-n-0, 0.42);
+    border-radius: $hg-card-border-radius;
+    box-shadow: 0 2px 16px transparentize($hg-color-n-50, 0.8);
+}

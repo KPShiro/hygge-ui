@@ -1,20 +1,20 @@
 <div class="container-fluid pb-0">
-    <h2>Coca-Cola Poland Ltd.</h2>
+    <h3>Coca-Cola Poland Ltd.</h3>
 </div>
 
 <div id="company-profile-page" class="container-fluid pt-2">
     <div class="content">
-        <h4 class="mb-4">
+        <h5 class="mb-4">
             Organization members
-        </h4>
+        </h5>
         <app-employee-card *ngFor="let employee of employees" [data]="employee" (delete)="deleteUserAccount($event)">
         </app-employee-card>
     </div>
 
     <div class="invitations">
-        <h4 class="mb-4">
+        <h5 class="mb-4">
             Organization invitations
-        </h4>
+        </h5>
 
         <form [formGroup]="invitationForm" (submit)="createInvitation()">
             <div class="input-group">

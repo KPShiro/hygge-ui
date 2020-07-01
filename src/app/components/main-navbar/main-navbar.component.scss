@@ -1,7 +1,10 @@
+@import 'src/scss/_variables';
+
 .main-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-    box-shadow: 4px 4px 16px rgba(0,0,0,0.08);
+    background-color: $hg-color-n-0;
+    box-shadow: 0 2px 16px transparentize($hg-color-n-40, 0.64);
+    height: 80px;
 }

@@ -1,9 +1,11 @@
 <div class="container-fluid main-navbar">
-    <button class="btn btn-light" [routerLink]="['/dashboard']">HYGGE</button>
+    <button class="btn" [routerLink]="['/dashboard']">
+        <b>HYGGE</b> BETA
+    </button>
     <div>
-        <button class="mr-2 btn btn-light" [routerLink]="['/dashboard']">Dashboard</button>
-        <button class="mr-2 btn btn-light" [routerLink]="['/profile/company']">My organization</button>
-        <button class="mr-2 btn btn-light" [routerLink]="['/profile/user']">My profile</button>
-        <button class="btn btn-primary" (click)="signOut()">Sign out</button>
+        <button class="mr-2 btn" [routerLink]="['/dashboard']">Dashboard</button>
+        <button class="mr-2 btn" [routerLink]="['/profile/company']">My organization</button>
+        <button class="mr-2 btn" [routerLink]="['/profile/user']">My profile</button>
+        <button class="btn btn-light" (click)="signOut()">Sign out</button>
     </div>
 </div>
