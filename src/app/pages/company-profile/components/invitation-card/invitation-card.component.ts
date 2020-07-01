@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -10,6 +11,9 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from 
 export class InvitationCardComponent {
   @Input() public data: any;
   @Output() public delete: EventEmitter<string> = new EventEmitter();
+  @ViewChild('getLinkBtn') public getLinkBtn: NgbTooltip;
+
+  public canCopyLink = true;
 
   // TODO: Implement confirmation dialog
   public onDeleteClicked(): void {
@@ -18,5 +22,24 @@ export class InvitationCardComponent {
     if (result === true) {
       this.delete.emit(this.data._id);
     }
+  }
+
+  public onCopyLinkClicked(): void {
+    this.canCopyLink = false;
+    this.getLinkBtn.open();
+
+    document.addEventListener('copy', this.copyUrlToClipboard.bind(this));
+    document.execCommand('copy');
+    document.removeEventListener('copy', this.onCopyLinkClicked.bind(this));
+
+    setTimeout(() => {
+      this.canCopyLink = true;
+      this.getLinkBtn.close();
+    }, 500);
+  }
+
+  private copyUrlToClipboard(event: any): void {
+    event.clipboardData.setData('text/plain', 'http://localhost:4200/sign-up?invitationId=' + this.data._id);
+    event.preventDefault();
   }
 }

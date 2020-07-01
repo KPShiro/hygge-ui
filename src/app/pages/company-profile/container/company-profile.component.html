@@ -1,33 +1,35 @@
-<div class="container-fluid">
-    <div *ngIf="employees.length > 0" class="row">
-        <div class="col col-md-5">
-            <h5>
-                Members
-            </h5>
-            <app-employee-card *ngFor="let employee of employees" [data]="employee"
-                (delete)="deleteUserAccount($event)"></app-employee-card>
-        </div>
+<div class="container-fluid pb-0">
+    <h2>Coca-Cola Poland Ltd.</h2>
+</div>
+
+<div id="company-profile-page" class="container-fluid pt-2">
+    <div class="content">
+        <h4 class="mb-4">
+            Organization members
+        </h4>
+        <app-employee-card *ngFor="let employee of employees" [data]="employee" (delete)="deleteUserAccount($event)">
+        </app-employee-card>
     </div>
 
-    <h5 class="mt-4 mb-3">
-        Organization invitations
-    </h5>
+    <div class="invitations">
+        <h4 class="mb-4">
+            Organization invitations
+        </h4>
 
-    <div class="row">
-        <form [formGroup]="invitationForm" (submit)="createInvitation()" class="col col-md-5">
+        <form [formGroup]="invitationForm" (submit)="createInvitation()">
             <div class="input-group">
                 <input type="email" id="email" formControlName="email" placeholder="username@example.com"
                     class="form-control">
                 <div class="input-group-append">
                     <button type="submit" [disabled]="invitationForm.get('email').invalid"
-                        class="btn btn-outline-primary">Send</button>
+                        class="btn btn-outline-primary">
+                        Send invitation
+                    </button>
                 </div>
             </div>
         </form>
-    </div>
 
-    <div *ngIf="invitations.length > 0" class="row mt-3">
-        <div class="col col-md-5">
+        <div *ngIf="invitations.length > 0" class="mt-3">
             <app-invitation-card *ngFor="let invitation of invitations" [data]="invitation"
                 (delete)="deleteInvitation(invitation._id)"></app-invitation-card>
         </div>

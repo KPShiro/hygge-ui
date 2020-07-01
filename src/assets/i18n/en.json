@@ -27,6 +27,18 @@
             "btn_submit": "Complete and sign in"
         }
     },
+    "page_company_profile": {
+        "invitations_section": {
+            "invitation_card": {
+                "label_status": "Status",
+                "label_recipient_email": "Recipient's email",
+                "status_pending": "Pending",
+                "status_in_sign_up": "Signing up",
+                "btn_get_link": "Get link",
+                "tooltip_link_copied": "Copied!"
+            }
+        }
+    },
     "page_invalid_invitation": {
         "title": "Invalid invitation",
         "description": "Please try again in a few seconds. If this issue is repeating, contact our support team."

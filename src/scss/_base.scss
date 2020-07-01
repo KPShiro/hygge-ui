@@ -35,3 +35,8 @@ body {
     font-weight: 600;
   }
 }
+
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

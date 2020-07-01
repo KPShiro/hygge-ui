@@ -1,26 +1,14 @@
 @import 'src/scss/variables';
 
-.invitation-card {
-    & {
-        display: flex;
-        align-items: center;
-        border-radius: 8px;
-        background-color: #fff;
-        color: $hg-color-text-dark;
-        padding: 1em;
-    }
+#company-profile-page {
+    display: flex;
+}
 
-    & > * {
-        width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.content {
+    flex: 1;
+    margin-right: 40px;
+}
 
-    & > * + * {
-        margin-left: 24px;
-    }
-
-    &:hover {
-        background-color: darken(#fff, 3%);
-    }
+.invitations {
+    width: 576px;
 }

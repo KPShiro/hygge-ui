@@ -19,6 +19,19 @@
     flex: 1;
 }
 
-.content > * + * {
-    margin-left: 1.2em;
+.recepient-email {
+    width: 192px;
+    margin-right: 1em;
+}
+
+.invitation-code {
+    width: 224px;
+}
+
+.status {
+    width: 108px;
+}
+
+.actions > .btn:not(:first-child) {
+    margin-left: 8px;
 }

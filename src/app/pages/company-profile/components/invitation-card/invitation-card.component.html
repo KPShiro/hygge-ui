@@ -1,40 +1,35 @@
 <div class="content">
-    <div class="label-value-pair">
+    <div class="label-value-pair status">
         <div class="label">
-            Status
+            {{ 'page_company_profile.invitations_section.invitation_card.label_status' | translate }}
         </div>
         <div class="value">
-            {{ data.status }}
+            <span *ngIf="data.status === 'PENDING'">
+                {{ 'page_company_profile.invitations_section.invitation_card.status_pending' | translate }}
+            </span>
+            <span *ngIf="data.status === 'IN_SIGNUP'">
+                {{ 'page_company_profile.invitations_section.invitation_card.status_in_sign_up' | translate }}
+            </span>
         </div>
     </div>
 
-    <div class="label-value-pair">
-        <div class="label">
-            Invitation code
+    <div class="label-value-pair recepient-email">
+        <div class="label text-overflow-ellipsis">
+            {{ 'page_company_profile.invitations_section.invitation_card.label_recipient_email' | translate }}
         </div>
-        <div class="value">
-            {{ data._id }}
-        </div>
-    </div>
-
-    <div class="label-value-pair">
-        <div class="label">
-            Recipient's email
-        </div>
-        <div class="value">
+        <div class="value text-overflow-ellipsis">
             {{ data.email }}
         </div>
     </div>
 </div>
 <div class="actions">
-    <button class="btn btn-light" (click)="onDeleteClicked()">
+    <button #getLinkBtn="ngbTooltip" class="btn btn-light" (click)="onCopyLinkClicked()"
+        [ngbTooltip]="'page_company_profile.invitations_section.invitation_card.tooltip_link_copied' | translate"
+        triggers="manual" [autoClose]="true" [disabled]="!canCopyLink">
+        <i class="uil uil-link-alt"></i>
+        {{ 'page_company_profile.invitations_section.invitation_card.btn_get_link' | translate }}
+    </button>
+    <button class="btn btn-light" (click)="onDeleteClicked()" ngbTooltip="Delete invitation">
         <i class="uil uil-trash"></i>
     </button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
-    </div>
 </div>
