@@ -2,16 +2,64 @@
 $hg-font-size: 16px;
 
 // Colors
-$hg-color-primary: #4864E6;
-$hg-color-text-dark: #333;
-$hg-color-text-light: #fff;
+$hg-color-n-900: #091E42;
+$hg-color-n-800: #172b4d;
+$hg-color-n-700: #253858;
+$hg-color-n-600: #344563;
+$hg-color-n-500: #42526e;
+$hg-color-n-400: #505f79;
+$hg-color-n-300: #5e6c84;
+$hg-color-n-200: #6b778c;
+$hg-color-n-100: #7a869a;
+$hg-color-n-90: #8993a4;
+$hg-color-n-80: #97a0af;
+$hg-color-n-70: #a5adba;
+$hg-color-n-60: #b3bac5;
+$hg-color-n-50: #c1c7d0;
+$hg-color-n-40: #dfe1e6;
+$hg-color-n-30: #ebecf0;
+$hg-color-n-20: #f4f5f7;
+$hg-color-n-10: #fafbfc;
+$hg-color-n-0: #ffffff;
 
-// Buttons
-$hg-btn-font-weight: 400;
-$hg-btn-font-size: 1em;
+$hg-color-g-500: #006644;
+$hg-color-g-400: #00875a;
+$hg-color-g-300: #36b37e;
+$hg-color-g-200: #57d9a3;
+$hg-color-g-100: #79f2c0;
+$hg-color-g-75: #abf5d1;
+$hg-color-g-50: #e3fcef;
 
-$hg-btn-border-radius: 0.2em;
-$hg-btn-border-weight: 0.09em;
+$hg-color-y-500: #ff8b00;
+$hg-color-y-400: #ff991f;
+$hg-color-y-300: #ffab00;
+$hg-color-y-200: #ffc400;
+$hg-color-y-100: #ffe380;
+$hg-color-y-75: #fff0b3;
+$hg-color-y-50: #fffae6;
 
-$hg-btn-padding-x: 1.2em;
-$hg-btn-padding-y: 0.7em;
+$hg-color-r-500: #bf2600;
+$hg-color-r-400: #de350b;
+$hg-color-r-300: #ff5630;
+$hg-color-r-200: #ff7452;
+$hg-color-r-100: #ff8f73;
+$hg-color-r-75: #ffbdad;
+$hg-color-r-50: #ffebe6;
+
+$hg-color-b-500: #0747a6;
+$hg-color-b-400: #0052cc;
+$hg-color-b-300: #0065ff;
+$hg-color-b-200: #2684ff;
+$hg-color-b-100: #4c9aff;
+$hg-color-b-75: #b3d4ff;
+$hg-color-b-50: #deebff;
+
+$hg-color-primary: $hg-color-b-500;
+$hg-color-text-dark: $hg-color-n-700;
+$hg-color-text-light: $hg-color-n-0;
+
+// Cards
+$hg-card-padding: 1em;
+
+$hg-card-border-radius: 3px;
+$hg-card-border-weight: 1px;

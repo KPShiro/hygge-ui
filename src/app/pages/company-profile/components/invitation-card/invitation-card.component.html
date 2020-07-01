@@ -1,0 +1,40 @@
+<div class="content">
+    <div class="label-value-pair">
+        <div class="label">
+            Status
+        </div>
+        <div class="value">
+            {{ data.status }}
+        </div>
+    </div>
+
+    <div class="label-value-pair">
+        <div class="label">
+            Invitation code
+        </div>
+        <div class="value">
+            {{ data._id }}
+        </div>
+    </div>
+
+    <div class="label-value-pair">
+        <div class="label">
+            Recipient's email
+        </div>
+        <div class="value">
+            {{ data.email }}
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <button class="btn btn-light" (click)="onDeleteClicked()">
+        <i class="uil uil-trash"></i>
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+</div>

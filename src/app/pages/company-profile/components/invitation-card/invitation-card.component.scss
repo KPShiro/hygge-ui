@@ -1,0 +1,24 @@
+@import 'src/scss/variables';
+
+:host {
+    & {
+        display: flex;
+        align-items: center;
+        padding: $hg-card-padding;
+        border-radius: $hg-card-border-radius;
+        transition: background-color ease-in-out 0.3s;
+    }
+
+    &:hover {
+        background-color: $hg-color-n-20;
+    }
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.content > * + * {
+    margin-left: 1.2em;
+}
