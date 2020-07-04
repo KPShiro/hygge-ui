@@ -28,7 +28,11 @@
         }
     },
     "page_company_profile": {
-        "invitations_section": {
+        "section_members": {
+            "title": "Organization members"
+        },
+        "section_invitations": {
+            "title": "Organization invitations",
             "invitation_card": {
                 "label_status": "Status",
                 "label_recipient_email": "Recipient's email",
@@ -36,6 +40,10 @@
                 "status_in_sign_up": "Signing up",
                 "btn_get_link": "Get link",
                 "tooltip_link_copied": "Copied!"
+            },
+            "form": {
+                "placeholder_email": "username@example.com",
+                "btn_send_invitation": "Send invitation"
             }
         }
     },

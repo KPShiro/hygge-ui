@@ -1,21 +1,21 @@
 <div class="content">
     <div class="label-value-pair status">
         <div class="label">
-            {{ 'page_company_profile.invitations_section.invitation_card.label_status' | translate }}
+            {{ 'page_company_profile.section_invitations.invitation_card.label_status' | translate }}
         </div>
         <div class="value">
             <span *ngIf="data.status === 'PENDING'">
-                {{ 'page_company_profile.invitations_section.invitation_card.status_pending' | translate }}
+                {{ 'page_company_profile.section_invitations.invitation_card.status_pending' | translate }}
             </span>
             <span *ngIf="data.status === 'IN_SIGNUP'">
-                {{ 'page_company_profile.invitations_section.invitation_card.status_in_sign_up' | translate }}
+                {{ 'page_company_profile.section_invitations.invitation_card.status_in_sign_up' | translate }}
             </span>
         </div>
     </div>
 
     <div class="label-value-pair recepient-email">
         <div class="label text-overflow-ellipsis">
-            {{ 'page_company_profile.invitations_section.invitation_card.label_recipient_email' | translate }}
+            {{ 'page_company_profile.section_invitations.invitation_card.label_recipient_email' | translate }}
         </div>
         <div class="value text-overflow-ellipsis">
             {{ data.email }}
@@ -24,10 +24,10 @@
 </div>
 <div class="actions">
     <button #getLinkBtn="ngbTooltip" class="btn btn-light" (click)="onCopyLinkClicked()"
-        [ngbTooltip]="'page_company_profile.invitations_section.invitation_card.tooltip_link_copied' | translate"
+        [ngbTooltip]="'page_company_profile.section_invitations.invitation_card.tooltip_link_copied' | translate"
         triggers="manual" [autoClose]="true" [disabled]="!canCopyLink">
         <i class="uil uil-link-alt"></i>
-        {{ 'page_company_profile.invitations_section.invitation_card.btn_get_link' | translate }}
+        {{ 'page_company_profile.section_invitations.invitation_card.btn_get_link' | translate }}
     </button>
     <button class="btn btn-light" (click)="onDeleteClicked()" ngbTooltip="Delete invitation">
         <i class="uil uil-trash"></i>

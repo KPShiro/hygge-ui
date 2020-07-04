@@ -1,11 +1,11 @@
 <div class="container-fluid pb-0">
-    <h3>Coca-Cola Poland Ltd.</h3>
+    <h3>ORGANIZATION_NAME_PLACEHOLDER</h3>
 </div>
 
 <div id="company-profile-page" class="container-fluid pt-2">
     <div class="content">
         <h5 class="mb-4">
-            Organization members
+            {{ 'page_company_profile.section_members.title' | translate }}
         </h5>
         <app-employee-card *ngFor="let employee of employees" [data]="employee" (delete)="deleteUserAccount($event)">
         </app-employee-card>
@@ -13,17 +13,17 @@
 
     <div class="invitations">
         <h5 class="mb-4">
-            Organization invitations
+            {{ 'page_company_profile.section_invitations.title' | translate }}
         </h5>
 
         <form [formGroup]="invitationForm" (submit)="createInvitation()">
             <div class="input-group">
-                <input type="email" id="email" formControlName="email" placeholder="username@example.com"
+                <input type="email" id="email" formControlName="email" [placeholder]="'page_company_profile.section_invitations.form.placeholder_email' | translate"
                     class="form-control">
                 <div class="input-group-append">
                     <button type="submit" [disabled]="invitationForm.get('email').invalid"
                         class="btn btn-outline-primary">
-                        Send invitation
+                        {{ 'page_company_profile.section_invitations.form.btn_send_invitation' | translate }}
                     </button>
                 </div>
             </div>
