@@ -1,10 +1,70 @@
 @import './variables';
 
+// Color system
+
 $theme-colors: (
-  "primary": $hg-color-primary,
-  "danger": $hg-color-r-300,
-  "success": $hg-color-g-300,
-  "warning": $hg-color-y-300,
+  "primary":  $hg-color-primary,
+  "danger":   $hg-color-r-300,
+  "success":  $hg-color-g-300,
+  "warning":  $hg-color-y-300,
 );
 
+// Options
 
+$enable-responsive-font-sizes:  true !default;
+$enable-validation-icons:       false !default;
+
+$border-radius:                 3px !default;
+
+// Body
+
+$body-bg:                   $hg-color-n-10 !default;
+$body-color:                $hg-color-n-800 !default;
+
+// Grid columns
+
+$grid-gutter-width:         24px !default;
+
+// Components
+
+$border-width:              2px !default;
+$border-color:              $hg-color-n-300 !default;
+
+$border-radius:             3px !default;
+$border-radius-lg:          8px !default;
+$border-radius-sm:          3px !default;
+
+// Buttons
+
+$btn-border-width:          $border-width !default;
+
+// Forms
+
+$label-margin-bottom:       4px !default;
+
+$input-bg:                  $hg-color-n-10 !default;
+$input-disabled-bg:         $hg-color-n-40 !default;
+
+$input-border-color:        transparent !default;
+$input-border-width:        2px !default;
+$input-box-shadow:          none !default;
+
+$input-border-radius:       3px !default;
+$input-border-radius-lg:    4px !default;
+$input-border-radius-sm:    3px !default;
+
+$input-focus-bg:            $hg-color-n-0 !default;
+$input-focus-border-color:  $hg-color-primary !default;
+$input-focus-box-shadow:    none !default;
+
+$input-placeholder-color:   $hg-color-n-60 !default;
+
+$input-height:              40px !default;
+
+// Tooltips
+
+$tooltip-max-width:         256px !default;
+
+// Alerts
+
+$alert-border-width:        0 !default;
