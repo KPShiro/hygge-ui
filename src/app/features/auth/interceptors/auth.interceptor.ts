@@ -6,7 +6,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { AuthFacadeService } from '../services/auth-facade/auth-facade.service';
 import { flatMap, first } from 'rxjs/operators';
 
@@ -22,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return this._authFacade.token$.pipe(
             first(),
             flatMap((token) => {
-                if (!isNullOrUndefined(token)) {
+                if (token !== undefined && token !== null) {
                     request = request.clone({
                         setHeaders: {
                             Authorization: `Bearer ${token.accessToken}`,

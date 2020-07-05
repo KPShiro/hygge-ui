@@ -3,7 +3,6 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { AuthFacadeService } from '../services/auth-facade/auth-facade.service';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
-import { isNullOrUndefined } from 'util';
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,7 +16,7 @@ export class IsAuthenticatedGuard implements CanActivate {
         return this._authFacade.token$.pipe(
             first(),
             map((token) => {
-                if (!isNullOrUndefined(token)) {
+                if (token !== undefined && token !== null) {
                     return true;
                 }
 
