@@ -4,7 +4,6 @@ import { IInvitation } from '@features/company/interfaces/invitation.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyFacadeService } from '@features/company/services/company-facade/company-facade.service';
 import { switchMap } from 'rxjs/operators';
-// import { UserFacadeService } from '@features/user/services/user-facade/user-facade.service';
 
 
 @Component({
@@ -23,7 +22,6 @@ export class CompanyProfileComponent implements OnInit {
     private readonly _fb: FormBuilder,
     private readonly _route: ActivatedRoute,
     private readonly _companyFacade: CompanyFacadeService,
-    // private readonly _userFacade: UserFacadeService,
   ) { }
 
   public ngOnInit(): void {
@@ -60,14 +58,6 @@ export class CompanyProfileComponent implements OnInit {
 
   public deleteUserAccount(id: string): void {
     console.log(id);
-    // this._userFacade.deleteAccount({
-    //   deleteForever: true,
-    //   id,
-    // }).pipe(
-    //   switchMap(() => this._companyFacade.getEmployees()),
-    // ).subscribe((employees) => {
-    //   this.employees = employees;
-    // });
   }
 
 }

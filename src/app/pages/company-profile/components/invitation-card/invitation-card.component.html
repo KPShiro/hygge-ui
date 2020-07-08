@@ -4,11 +4,11 @@
             {{ 'page_company_profile.section_invitations.invitation_card.label_status' | translate }}
         </div>
         <div class="value">
-            <span *ngIf="data.status === 'PENDING'">
-                {{ 'page_company_profile.section_invitations.invitation_card.status_pending' | translate }}
+            <span *ngIf="wasSent">
+                {{ 'page_company_profile.section_invitations.invitation_card.status_sent' | translate }}
             </span>
-            <span *ngIf="data.status === 'IN_SIGNUP'">
-                {{ 'page_company_profile.section_invitations.invitation_card.status_in_sign_up' | translate }}
+            <span *ngIf="wasOpened">
+                {{ 'page_company_profile.section_invitations.invitation_card.status_opened' | translate }}
             </span>
         </div>
     </div>

@@ -74,8 +74,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
         const invitationDetails: IInvitation = this._route.snapshot.data.invitationDetails;
 
         const data: ICreateUserAccountDto = {
-            invitationId: invitationDetails._id,
-            companyId: invitationDetails.companyId,
+            organizationId: invitationDetails.organizationId,
+            username: this.usernameControl.value,
             email: this.usernameControl.value,
             password: this.passwordControl.value,
             firstName: this.firstNameControl.value,

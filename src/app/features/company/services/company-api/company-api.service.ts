@@ -12,24 +12,16 @@ export class CompanyApiService {
         private readonly _httpClient: HttpClient,
     ) { }
 
-    public validateInvitation(id: string): Observable<boolean> {
-        const url = `${environment.api.companyAccount.url}${environment.api.companyAccount.endpoints.invitation.validate}`;
+    public verifyInvitation(invitationId: string): Observable<IInvitation> {
+        const url = `${environment.api.v2.url}${environment.api.v2.organization.url}${environment.api.v2.organization.endpoints.verifyInvitation}`;
 
-        return this._httpClient.post<boolean>(url, { id }).pipe(
-            catchError((response) => throwError(response)),
-        );
-    }
-
-    public getInvitationDetails(id: string): Observable<IInvitation> {
-        const url = `${environment.api.companyAccount.url}${environment.api.companyAccount.endpoints.invitation.details}`;
-
-        return this._httpClient.post<IInvitation>(url, { id }).pipe(
+        return this._httpClient.post<IInvitation>(url, { invitationId }).pipe(
             catchError((response) => throwError(response)),
         );
     }
 
     public getEmployees(): Observable<any[]> {
-        const url = `${environment.api.companyAccount.url}${environment.api.companyAccount.endpoints.employees}`;
+        const url = `${environment.api.v2.url}${environment.api.v2.organization.url}${environment.api.v2.organization.endpoints.getEmployees}`;
 
         return this._httpClient.get<any[]>(url).pipe(
             catchError((response) => throwError(response)),
@@ -37,7 +29,7 @@ export class CompanyApiService {
     }
 
     public getInvitations(): Observable<IInvitation[]> {
-        const url = `${environment.api.companyAccount.url}${environment.api.companyAccount.endpoints.invitation.list}`;
+        const url = `${environment.api.v2.url}${environment.api.v2.organization.url}${environment.api.v2.organization.endpoints.getInvitations}`;
 
         return this._httpClient.get<any[]>(url).pipe(
             catchError((response) => throwError(response)),
@@ -45,17 +37,17 @@ export class CompanyApiService {
     }
 
     public createInvitation(email: string): Observable<any> {
-        const url = `${environment.api.companyAccount.url}${environment.api.companyAccount.endpoints.invitation.create}`;
+        const url = `${environment.api.v2.url}${environment.api.v2.organization.url}${environment.api.v2.organization.endpoints.invite}`;
 
         return this._httpClient.post<any>(url, email).pipe(
             catchError((response) => throwError(response)),
         );
     }
 
-    public deleteInvitation(id: string): Observable<void> {
-        const url = `${environment.api.companyAccount.url}${environment.api.companyAccount.endpoints.invitation.delete}`;
+    public deleteInvitation(invitationId: string): Observable<void> {
+        const url = `${environment.api.v2.url}${environment.api.v2.organization.url}${environment.api.v2.organization.endpoints.deleteInvitation}`;
 
-        return this._httpClient.post<void>(url, { id }).pipe(
+        return this._httpClient.post<void>(url, { invitationId }).pipe(
             catchError((response) => throwError(response)),
         );
     }

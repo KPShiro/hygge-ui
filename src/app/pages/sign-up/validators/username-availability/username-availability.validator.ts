@@ -7,7 +7,7 @@ import { UserFacadeService } from '@features/user/services/user-facade/user-faca
 export function usernameAvailabilityAsyncValidator(facade: UserFacadeService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         return timer(700).pipe(
-            flatMap(() => facade.checkUsernameAvailability(control.value)),
+            flatMap(() => facade.verifyUsername(control.value)),
             map((available) => available ? null : { 'not-available': true }),
         );
     };

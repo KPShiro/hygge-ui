@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { IInvitation } from '@features/company/interfaces/invitation.interface';
+import { OrganizationInvitationStatus } from '@app/common/enum/organization-invitation-status.enum';
 
 
 @Component({
@@ -9,11 +11,23 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvitationCardComponent {
-  @Input() public data: any;
+  @Input() public data: IInvitation;
   @Output() public delete: EventEmitter<string> = new EventEmitter();
   @ViewChild('getLinkBtn') public getLinkBtn: NgbTooltip;
 
   public canCopyLink = true;
+
+  public get wasSent(): boolean {
+    return this.data.status === OrganizationInvitationStatus.SENT;
+  }
+
+  public get wasOpened(): boolean {
+    return this.data.status === OrganizationInvitationStatus.OPENED;
+  }
+
+  public get wasClosed(): boolean {
+    return this.data.status === OrganizationInvitationStatus.CLOSED;
+  }
 
   // TODO: Implement confirmation dialog
   public onDeleteClicked(): void {

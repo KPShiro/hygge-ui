@@ -1,8 +1,8 @@
 export interface ICreateUserAccountDto {
-    invitationId: string;
-    companyId: string;
-    email: string;
+    organizationId: string;
+    username: string;
     password: string;
+    email: string;
     firstName: string;
     lastName: string;
 }

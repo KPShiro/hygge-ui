@@ -36,8 +36,8 @@
             "invitation_card": {
                 "label_status": "Status",
                 "label_recipient_email": "Recipient's email",
-                "status_pending": "Pending",
-                "status_in_sign_up": "Signing up",
+                "status_sent": "Sent",
+                "status_opened": "Opened",
                 "btn_get_link": "Get link",
                 "tooltip_link_copied": "Copied!"
             },

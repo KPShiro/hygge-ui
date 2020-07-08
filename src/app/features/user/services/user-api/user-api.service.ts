@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ICreateUserAccountDto } from '@features/user/dto/create-user-account.dto';
@@ -13,24 +13,26 @@ export class UserApiService {
         private readonly _httpClient: HttpClient,
     ) { }
 
-    public checkUsernameAvailability(username: string): Observable<boolean> {
-        const url = `${environment.api.userAccount.url}${environment.api.userAccount.endpoints.check.username}`;
+    public verifyUsername(username: string): Observable<boolean> {
+        const url = `${environment.api.v2.url}${environment.api.v2.account.url}${environment.api.v2.account.endpoints.verifyUsername}`;
 
-        return this._httpClient.post<boolean>(url, { username });
+        let params: HttpParams = new HttpParams();
+
+        if (username !== '' && username !== null && username !== undefined) {
+            params = params.set('username', username);
+        }
+
+        return this._httpClient.get<boolean>(url, { params });
     }
 
-    public createAccount(dto: ICreateUserAccountDto): Observable<any> {
-        const url = `${environment.api.userAccount.url}${environment.api.userAccount.endpoints.create}`;
+    public createAccount(dto: ICreateUserAccountDto): Observable<{ username: string, password: string }> {
+        const url = `${environment.api.v2.url}${environment.api.v2.account.url}${environment.api.v2.account.endpoints.create}`;
 
-        return this._httpClient.post<any>(url, dto);
+        return this._httpClient.post<{ username: string, password: string }>(url, dto);
     }
 
     public deleteAccount(dto: IDeleteUserAccountDto): Observable<any> {
-        let url = `${environment.api.userAccount.url}${environment.api.userAccount.endpoints.delete}`;
-
-        if (dto.deleteForever) {
-            url = `${environment.api.userAccount.url}${environment.api.userAccount.endpoints.deleteForever}`;
-        }
+        const url = `${environment.api.v2.url}${environment.api.v2.account.url}${environment.api.v2.account.endpoints.delete}`;
 
         return this._httpClient.post<any>(url, { id: dto.id });
     }

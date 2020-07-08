@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 import { ICreateUserAccountDto } from '../dto/create-user-account.dto';
-import { IToken } from '@features/auth/interfaces/token.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -15,7 +14,7 @@ export const createAccount = createAction(
 
 export const createAccountSucceeded = createAction(
     createActionName('Create account: Succeeded'),
-    props<{ payload: IToken }>(),
+    props<{ payload: { username: string, password: string } }>(),
 );
 
 export const createAccountFailed = createAction(

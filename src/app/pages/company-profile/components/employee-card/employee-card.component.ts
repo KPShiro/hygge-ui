@@ -11,6 +11,6 @@ export class EmployeeCardComponent {
   @Output() public delete: EventEmitter<void> = new EventEmitter();
 
   public onDeleteClick(): void {
-    this.delete.emit(this.data.id);
+    this.delete.emit(this.data._id);
   }
 }

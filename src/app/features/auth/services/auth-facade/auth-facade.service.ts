@@ -1,29 +1,45 @@
-import * as actions from '@features/auth/state/auth.actions';
-import * as selectors from '@features/auth/state/auth.selectors';
-
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { IAuthState } from '@features/auth/state/auth.state';
-import { Observable } from 'rxjs';
 import { IToken } from '@features/auth/interfaces/token.interface';
+import { AuthApiService } from '../auth-api/auth-api.service';
+import { AuthStateService } from '../auth-state/auth-state.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Injectable()
 export class AuthFacadeService {
 
-    public isAuthenticated$: Observable<boolean> = this._store.select(selectors.isAuthenticated);
-    public token$: Observable<IToken> = this._store.select(selectors.token);
-    public errors$: Observable<string[]> = this._store.select(selectors.errors);
+    public get token(): IToken | undefined {
+        return this._authState.loadToken();
+    }
 
     public constructor(
-        private readonly _store: Store<IAuthState>,
+        private readonly _authApi: AuthApiService,
+        private readonly _authState: AuthStateService,
+        private readonly _router: Router,
+        private readonly _route: ActivatedRoute,
     ) { }
 
     public signInWithUsernameAndPassword(username: string, password: string): void {
-        this._store.dispatch(actions.signIn({ payload: { username, password } }));
+        this._authApi.signInWithUsernameAndPassword(username, password).subscribe((token) => {
+            this.signInWithToken(token);
+        });
+    }
+
+    public signInWithToken(token: IToken): void {
+        const returnUrl = this._route.snapshot.queryParams.returnUrl;
+        this._authState.saveToken(token);
+
+        if (returnUrl !== undefined && returnUrl !== null) {
+            this._router.navigateByUrl(returnUrl);
+        } else {
+            this._router.navigate(['/dashboard']);
+        }
     }
 
     public signOut(): void {
-        this._store.dispatch(actions.signOut());
+        this._authApi.signOut().subscribe(() => {
+            localStorage.clear();
+            this._router.navigate(['/sign-in']);
+        });
     }
 }

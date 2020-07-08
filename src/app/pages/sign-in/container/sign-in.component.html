@@ -11,9 +11,6 @@
       <input #password class="form-control" type="password"
         [placeholder]="'page_sign_in.form.placeholder_password' | translate" formControlName="password">
     </div>
-    <div class="alert alert-danger" role="alert" *ngFor="let errorKey of (errors$ | async)">
-      {{ 'errors.' + errorKey | translate }}
-    </div>
     <button type="submit" class="btn btn-primary mt-2" (click)="signIn()"
       [innerHTML]="'page_sign_in.form.btn_submit' | translate"></button>
   </form>

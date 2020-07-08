@@ -17,8 +17,8 @@ export class UserFacadeService {
         private readonly _userApi: UserApiService,
     ) { }
 
-    public checkUsernameAvailability(username: string): Observable<boolean> {
-        return this._userApi.checkUsernameAvailability(username);
+    public verifyUsername(username: string): Observable<boolean> {
+        return this._userApi.verifyUsername(username);
     }
 
     public createAccount(dto: ICreateUserAccountDto): void {
