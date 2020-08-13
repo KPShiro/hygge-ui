@@ -1,17 +1,15 @@
 @import 'src/scss/variables';
 
-:host {
-    & {
-        display: flex;
-        align-items: center;
-        padding: $hg-card-padding;
-        border-radius: $hg-card-border-radius;
-        transition: background-color ease-in-out 0.3s;
-    }
+$invitation-card-width: 384px;
 
-    &:hover {
-        background-color: $hg-color-n-20;
-    }
+:host {
+    display: flex;
+    align-items: center;
+    padding: $hg-card-padding;
+    border-radius: $hg-card-border-radius;
+    border: $hg-card-border-weight solid $hg-color-n-20;
+    background-color: $hg-color-n-0;
+    max-width: $invitation-card-width;
 }
 
 .content {
@@ -19,19 +17,15 @@
     flex: 1;
 }
 
-.recepient-email {
-    width: 192px;
-    margin-right: 1em;
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
-.invitation-code {
-    width: 224px;
-}
+// .recepient-email {
+// }
 
 .status {
-    width: 80px;
-}
-
-.actions > .btn:not(:first-child) {
-    margin-left: 8px;
+    margin-right: $hg-card-padding;
 }

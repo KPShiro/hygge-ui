@@ -2,13 +2,20 @@
 
 #company-profile-page {
     display: flex;
+    flex-direction: column;
+}
+
+#employee-list,
+#invitation-list {
+    & {
+        display: flex;
+    }
+
+    & > * + * {
+        margin-left: .64em;
+    }
 }
 
 .content {
     flex: 1;
-    margin-right: 40px;
-}
-
-.invitations {
-    width: 576px;
 }

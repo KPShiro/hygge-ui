@@ -1,37 +1,39 @@
-:host {
-    & {
-        display: block;
-        padding: 1em;
-        border-radius: 3px;
-        border: 1px solid #f4f5f7;
-        transition: border-color ease-in-out 0.3s;
-    }
+@import 'src/scss/_variables';
 
-    &:hover {
-        border-color: #EBECF0;
-    }
+:host {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    padding: $hg-card-padding;
+    width: 384px;
+    border-radius: $hg-card-border-radius;
+    border: 2px solid $hg-color-n-20;
+    background-color: $hg-color-n-0;
+}
+
+.avatar {
+    width: $avatar-size-md;
+    height: $avatar-size-md;
+    margin-right: $hg-card-padding;
+    border-radius: $hg-card-border-radius;
+    background-color: $hg-color-n-20;
+}
+
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.name,
+.email {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .name {
-    font-size: 1.2em;
-}
-
-.hg-btn {
-    & {
-        border-radius: 3px;
-        box-shadow: none;
-        border-color: transparent;
-        padding: 0.4em 0.6em;
-        background-color: transparent;
-    }
-}
-
-.hg-btn.hg-btn-light {
-    & {
-        background-color: #f4f5f7;
-    }
-
-    &:hover {
-        background-color: #EBECF0;
-    }
+    font-weight: 600;
 }
