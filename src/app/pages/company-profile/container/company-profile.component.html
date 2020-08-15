@@ -7,9 +7,9 @@
 
 <div id="company-profile-page" class="container-fluid">
     <div class="invitations">
-        <h5 class="section-title mb-3">
+        <div class="section-title mb-2">
             {{ 'page_company_profile.section_invitations.title' | translate }}
-        </h5>
+        </div>
 
         <div id="invitation-list" *ngIf="invitations.length > 0">
             <div class="invitations-message">
@@ -27,9 +27,9 @@
     </div>
 
     <div class="employees mt-4">
-        <h5 class="section-title mb-3">
+        <div class="section-title mb-2">
             {{ 'page_company_profile.section_members.title' | translate }}
-        </h5>
+        </div>
         <div id="employee-list">
             <app-employee-card *ngFor="let employee of employees" [data]="employee" (delete)="deleteUserAccount($event)">
             </app-employee-card>
