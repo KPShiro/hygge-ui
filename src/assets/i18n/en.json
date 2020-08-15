@@ -29,10 +29,10 @@
     },
     "page_company_profile": {
         "section_members": {
-            "title": "Organization members"
+            "title": "People"
         },
         "section_invitations": {
-            "title": "Organization invitations",
+            "title": "Invitations",
             "invitation_card": {
                 "label_status": "Status",
                 "label_recipient_email": "Recipient's email",

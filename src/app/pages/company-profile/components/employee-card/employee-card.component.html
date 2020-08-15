@@ -1,9 +1,19 @@
-<div class="avatar"></div>
-<div class="info">
+<div class="actions-trigger">
+    <i class="uil uil-ellipsis-v"></i>
+</div>
+<div class="avatar">
+    <div class="avatar-circle">
+        {{ data.firstName[0] }}{{ data.lastName[0] }}
+    </div>
+</div>
+<div class="user-info">
     <div class="name">
-        {{ data.firstName }} {{ data.lastName }} ({{ data.role }})
+        {{ data.firstName }} {{ data.lastName }}
     </div>
     <div class="email">
         {{ data.email }}
     </div>
+</div>
+<div class="footer">
+    {{ data.role }}
 </div>

@@ -1,39 +1,89 @@
 @import 'src/scss/_variables';
 
+$avatar-size: 112px;
+$avatar-circle-margin: 8px;
+
 :host {
-    display: flex;
+    position: relative;
     overflow: hidden;
-    align-items: center;
-    padding: $hg-card-padding;
-    width: 384px;
+    width: 268px;
     border-radius: $hg-card-border-radius;
-    border: 2px solid $hg-color-n-20;
     background-color: $hg-color-n-0;
 }
 
-.avatar {
-    width: $avatar-size-md;
-    height: $avatar-size-md;
-    margin-right: $hg-card-padding;
-    border-radius: $hg-card-border-radius;
-    background-color: $hg-color-n-20;
+.actions-trigger {
+    position: absolute;
+    top: $hg-card-padding;
+    right: $hg-card-padding;
+    color: $hg-color-n-90;
 }
 
-.info {
-    flex: 1;
+.actions-trigger:hover {
+    color: $hg-color-n-600;
+    cursor: pointer;
+}
+
+.avatar {
+    position: relative;
+    width: $avatar-size;
+    height: $avatar-size;
+    margin: $hg-card-padding auto;
+    margin-top: 32px;
+    border-radius: 50%;
+    background-color: $hg-color-n-30;
+}
+
+.avatar-circle {    
+    position: absolute;
+    z-index: 2;
+    top: $avatar-circle-margin;
+    left: $avatar-circle-margin;
+    right: $avatar-circle-margin;
+    bottom: $avatar-circle-margin;
+
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    color: $hg-color-n-50;
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.user-info {
+    margin-bottom: 32px;
 }
 
 .name,
 .email {
-    flex: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+}
+
+.email {
+    font-size: 0.8em;
+    color: $hg-color-n-90;
 }
 
 .name {
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: $hg-card-padding;
+    padding: $hg-card-padding;
+    
+    border-top: 1px solid $hg-color-n-30;
+    background-color: $hg-color-n-10;
+    
+    text-transform: uppercase;
+    font-size: 0.8em;
+    text-align: center;
+    color: $hg-color-n-90;
     font-weight: 600;
 }
