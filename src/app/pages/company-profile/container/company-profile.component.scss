@@ -12,10 +12,34 @@
     }
 
     & > * + * {
-        margin-left: .64em;
+        margin-left: 0.64em;
     }
 }
 
 .content {
     flex: 1;
+}
+
+.organization-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.organization-sentence {
+    color: $hg-color-n-90;
+}
+
+.invitations-message {
+    & {
+        display: flex;
+        align-items: center;
+        border-radius: $hg-card-border-radius;
+        padding: $hg-card-padding;
+        background-color: $hg-color-b-50;
+    }
+
+    .message {
+        margin-right: $hg-card-padding;
+        color: $hg-color-b-500;
+    }
 }

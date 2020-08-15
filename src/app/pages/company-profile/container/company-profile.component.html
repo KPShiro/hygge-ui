@@ -1,34 +1,33 @@
 <div class="container-fluid pb-0">
-    <h3>ORGANIZATION_NAME_PLACEHOLDER</h3>
+    <div class="organization-name">Lorem Ipsum Ltd.</div>
+    <div class="organization-sentence">
+        "Lorem ipsum dolor sit amet"
+    </div>
 </div>
 
 <div id="company-profile-page" class="container-fluid">
     <div class="invitations">
-        <h5 class="mb-4">
+        <h5 class="section-title mb-3">
             {{ 'page_company_profile.section_invitations.title' | translate }}
         </h5>
 
-        <form [formGroup]="invitationForm" (submit)="createInvitation()">
-            <div class="input-group">
-                <input type="email" id="email" formControlName="email" [placeholder]="'page_company_profile.section_invitations.form.placeholder_email' | translate"
-                    class="form-control">
-                <div class="input-group-append">
-                    <button type="submit" [disabled]="invitationForm.get('email').invalid"
-                        class="btn btn-outline-primary">
-                        {{ 'page_company_profile.section_invitations.form.btn_send_invitation' | translate }}
-                    </button>
+        <div id="invitation-list" *ngIf="invitations.length > 0">
+            <div class="invitations-message">
+                <div class="message">
+                    <b>Your team needs extension?</b><br>
+                    Feel free to invite people:
                 </div>
+                <button class="btn btn-primary">
+                    Create invitation
+                </button>
             </div>
-        </form>
-
-        <div id="invitation-list" *ngIf="invitations.length > 0" class="mt-3">
             <app-invitation-card *ngFor="let invitation of invitations" [data]="invitation"
                 (delete)="deleteInvitation(invitation._id)"></app-invitation-card>
         </div>
     </div>
 
-    <div class="employees mt-5">
-        <h5 class="mb-4">
+    <div class="employees mt-4">
+        <h5 class="section-title mb-3">
             {{ 'page_company_profile.section_members.title' | translate }}
         </h5>
         <div id="employee-list">
