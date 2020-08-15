@@ -1,10 +1,37 @@
 @import 'src/scss/_variables';
 
 .main-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $hg-color-n-0;
-    box-shadow: 0 2px 16px transparentize($hg-color-n-40, 0.64);
-    height: 80px;
+    & {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $hg-color-primary;
+        padding: 12px 40px;
+    }
+
+    .actions > button + * {
+        margin-left: 8px;
+    }
+
+    .action {
+        color: $hg-color-n-0;
+    }
+
+    .profile-action {
+        background-color: $hg-color-b-400;
+    }
+}
+
+.logo {
+    & {
+        display: flex;
+        font-weight: bold;
+        outline: none;
+        color: $hg-color-n-0;
+    }
+
+    .version-marker {
+        margin-left: 4px;
+        opacity: 0.5;
+    }
 }

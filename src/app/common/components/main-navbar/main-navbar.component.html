@@ -1,11 +1,19 @@
-<div class="container-fluid main-navbar">
-    <button class="btn" [routerLink]="['/dashboard']">
-        <b>HYGGE</b> BETA
-    </button>
-    <div>
-        <button class="mr-2 btn" [routerLink]="['/dashboard']">Dashboard</button>
-        <button class="mr-2 btn" [routerLink]="['/profile/company']">My organization</button>
-        <button class="mr-2 btn" [routerLink]="['/profile/user']">My profile</button>
-        <button class="btn btn-light" (click)="signOut()">Sign out</button>
+<div class="main-navbar">
+    <div class="logo" [routerLink]="['/dashboard']">
+        HYGGE <div class="version-marker">BETA</div>
+    </div>
+    <div class="actions">
+        <button class="action btn" [routerLink]="['/dashboard']">Dashboard</button>
+
+        <div ngbDropdown class="d-inline-block" placement="bottom-right">
+            <button class="action btn profile-action" id="profile-dropdown" ngbDropdownToggle>
+                <i class="uil uil-user"></i> Lorem ipsum dolor sit amet
+            </button>
+            <div ngbDropdownMenu aria-labelledby="profile-dropdown">
+                <button ngbDropdownItem [routerLink]="['/profile/company']">Organization</button>
+                <button ngbDropdownItem [routerLink]="['/profile/user']">My profile</button>
+                <button ngbDropdownItem (click)="signOut()">Sign out</button>
+            </div>
+        </div>
     </div>
 </div>
