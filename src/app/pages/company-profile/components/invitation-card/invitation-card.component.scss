@@ -7,13 +7,11 @@ $invitation-card-width: 384px;
     align-items: center;
     padding: $hg-card-padding;
     border-radius: $hg-card-border-radius;
-    border: $hg-card-border-weight solid $hg-color-n-20;
     background-color: $hg-color-n-0;
-    max-width: $invitation-card-width;
+    width: 320px;
 }
 
 .content {
-    display: flex;
     flex: 1;
 }
 
@@ -23,9 +21,26 @@ $invitation-card-width: 384px;
     justify-content: flex-end;
 }
 
-// .recepient-email {
-// }
+.status,
+.email {
+    font-size: 0.8em;
+}
 
 .status {
-    margin-right: $hg-card-padding;
+    color: $hg-color-primary;
+}
+
+.full-name {
+    font-weight: bold;
+}
+
+.action-trigger {
+    & {
+        cursor: pointer;
+        color: $hg-color-n-90;
+    }
+
+    &:hover {
+        color: $hg-color-n-600;
+    }
 }

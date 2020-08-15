@@ -1,28 +1,25 @@
-<div class="content text-overflow-ellipsis">
-    <!-- <div class="label-value-pair status">
-        <div class="label">
-            {{ 'page_company_profile.section_invitations.invitation_card.label_status' | translate }}
-        </div>
-        <div class="value">
-            <span *ngIf="wasSent">
-                {{ 'page_company_profile.section_invitations.invitation_card.status_sent' | translate }}
-            </span>
-            <span *ngIf="wasOpened">
-                {{ 'page_company_profile.section_invitations.invitation_card.status_opened' | translate }}
-            </span>
-        </div>
-    </div> -->
+<div class="content">
+    <div class="status">
+        <span *ngIf="wasSent">
+            {{ 'page_company_profile.section_invitations.invitation_card.status_sent' | translate }}
+        </span>
+        <span *ngIf="wasOpened">
+            {{ 'page_company_profile.section_invitations.invitation_card.status_opened' | translate }}
+        </span>
+    </div>
 
-    <div class="label-value-pair recepient-email text-overflow-ellipsis">
-        <div class="label text-overflow-ellipsis">
-            {{ 'page_company_profile.section_invitations.invitation_card.label_recipient_email' | translate }}
-        </div>
-        <div class="value text-overflow-ellipsis">
-            {{ data.email }}
-        </div>
+    <div class="full-name">
+        {{ data.firstName }} {{ data.lastName }}
+    </div>
+
+    <div class="email">
+        {{ data.email }}
     </div>
 </div>
-<div class="actions">
+<div class="action-trigger">
+    <i class="uil uil-ellipsis-v"></i>
+</div>
+<!-- <div class="actions">
     <button #getLinkBtn="ngbTooltip" class="btn btn-light" (click)="onCopyLinkClicked()"
         [ngbTooltip]="'page_company_profile.section_invitations.invitation_card.tooltip_link_copied' | translate"
         triggers="manual" [autoClose]="true" [disabled]="!canCopyLink">
@@ -31,4 +28,4 @@
     <button class="btn btn-light" (click)="onDeleteClicked()">
         <i class="uil uil-trash"></i>
     </button>
-</div>
+</div> -->

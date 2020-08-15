@@ -34,16 +34,10 @@
         "section_invitations": {
             "title": "Invitations",
             "invitation_card": {
-                "label_status": "Status",
-                "label_recipient_email": "Recipient's email",
-                "status_sent": "Sent",
-                "status_opened": "Opened",
+                "status_sent": "Invitation sent",
+                "status_opened": "Email opened",
                 "btn_get_link": "Get link",
                 "tooltip_link_copied": "Copied!"
-            },
-            "form": {
-                "placeholder_email": "username@example.com",
-                "btn_send_invitation": "Send invitation"
             }
         }
     },
