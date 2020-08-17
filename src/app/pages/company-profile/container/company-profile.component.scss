@@ -1,8 +1,18 @@
 @import 'src/scss/variables';
 
 #company-profile-page {
-    display: flex;
-    flex-direction: column;
+    & {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .header > * + * {
+        margin-top: 8px;
+    }
 }
 
 #employee-list,
@@ -12,17 +22,13 @@
     }
 
     & > * + * {
-        margin-left: 0.64em;
+        margin-left: 1rem;
     }
 }
 
-.content {
-    flex: 1;
-}
-
 .organization-name {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .organization-sentence {
@@ -40,7 +46,6 @@
 
     .message {
         margin-right: $hg-card-padding * 2;
-        line-height: 1;
         color: $hg-color-b-500;
     }
 }
