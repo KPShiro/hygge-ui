@@ -3,14 +3,19 @@
 .main-navbar {
     & {
         display: flex;
+        align-items: center;
+        height: $hg-main-navbar-height;
+        background-color: $hg-color-primary;
+    }
+
+    .main-navbar-content {
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: $hg-color-primary;
-        padding: 12px 40px;
     }
 
     .actions > button + * {
-        margin-left: 8px;
+        margin-left: 0.5rem;
     }
 
     .action {
@@ -25,13 +30,14 @@
 .logo {
     & {
         display: flex;
-        font-weight: bold;
+        font-weight: 700;
         outline: none;
         color: $hg-color-n-0;
+        cursor: pointer;
     }
 
     .version-marker {
-        margin-left: 4px;
-        opacity: 0.5;
+        margin-left: 0.25rem;
+        opacity: 0.64;
     }
 }
