@@ -12,15 +12,18 @@ $avatar-circle-margin: 8px;
 }
 
 .actions-trigger {
-    position: absolute;
-    top: $hg-card-padding;
-    right: $hg-card-padding;
-    color: $hg-color-n-90;
-}
+    & {
+        position: absolute;
+        top: $hg-card-padding;
+        right: $hg-card-padding;
+        font-size: 1.125rem;
+        color: $hg-color-n-90;
+    }
 
-.actions-trigger:hover {
-    color: $hg-color-n-600;
-    cursor: pointer;
+    &:hover {
+        color: $hg-color-n-600;
+        cursor: pointer;
+    }
 }
 
 .avatar {
@@ -33,7 +36,7 @@ $avatar-circle-margin: 8px;
     background-color: $hg-color-n-30;
 }
 
-.avatar-circle {    
+.avatar-circle {
     position: absolute;
     z-index: 2;
     top: $avatar-circle-margin;
@@ -50,14 +53,14 @@ $avatar-circle-margin: 8px;
 
     color: $hg-color-n-50;
     font-weight: bold;
-    font-size: 1.4em;
+    font-size: 1.125rem;
 }
 
 .user-info {
     margin-bottom: 32px;
 }
 
-.name,
+.full-name,
 .email {
     white-space: nowrap;
     overflow: hidden;
@@ -66,23 +69,25 @@ $avatar-circle-margin: 8px;
 }
 
 .email {
-    font-size: 0.8em;
+    font-size: 0.75rem;
     color: $hg-color-n-90;
 }
 
-.name {
+.full-name {
+    font-size: 1rem;
     font-weight: bold;
+    margin-bottom: 4px;
 }
 
 .footer {
     margin-top: $hg-card-padding;
     padding: $hg-card-padding/1.5 $hg-card-padding;
-    
+
     border-top: 1px solid $hg-color-n-30;
     background-color: $hg-color-n-10;
-    
+
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 0.75rem;
     text-align: center;
     color: $hg-color-n-90;
     font-weight: 600;
