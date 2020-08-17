@@ -4,45 +4,21 @@
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import './buttons';
 
-:root {
-  font-family: 'Lato', sans-serif;
-  font-size: $hg-font-size;
-}
-
 * {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
 }
 
 .full-page {
   height: 100vh;
 }
 
+.container,
 .container-fluid {
-  padding: 24px 40px;
-}
-
-.label-value-pair {
-  .label {
-    color: $hg-color-n-80;
-    font-size: 0.8em;
-  }
-  .value {
-    font-weight: 600;
-  }
-}
-
-.text-overflow-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: $hg-page-container-padding-y $hg-page-container-padding-x;
 }
 
 .section-title {
+  font-weight: 300;
+  font-size: 1.125rem;
   color: $hg-color-n-90;
-  font-weight: normal;
-  font-size: 1.13em;
 }

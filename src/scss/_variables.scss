@@ -1,6 +1,3 @@
-// Fonts
-$hg-font-size: 16px;
-
 // Colors
 $hg-color-n-900: #091E42;
 $hg-color-n-800: #172b4d;
@@ -57,6 +54,11 @@ $hg-color-b-50: #deebff;
 $hg-color-primary: $hg-color-b-300;
 
 // Cards
-$hg-card-padding: 24px;
 
+$hg-card-padding: 24px;
 $hg-card-border-radius: 4px;
+
+// Spacings
+
+$hg-page-container-padding-x: 2.5rem;
+$hg-page-container-padding-y: 2.5rem;
