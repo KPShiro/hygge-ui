@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h5 class="modal-title">Inviting new member</h5>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="invitationForm">
+        <div class="form-group">
+            <label for="email" [innerHTML]="'Email'"></label>
+            <input id="email" class="form-control" type="email" formControlName="email"
+                placeholder="user@email.com"
+                [ngClass]="{ 'is-invalid': emailControl.invalid  && emailControl.dirty, 'is-valid': emailControl.valid }">
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label for="firstName" [innerHTML]="'First name'"></label>
+                <input id="firstName" class="form-control" type="email" formControlName="firstName"
+                    placeholder="John"
+                    [ngClass]="{ 'is-invalid': firstNameControl.invalid  && firstNameControl.dirty, 'is-valid': firstNameControl.valid }">
+            </div>
+            <div class="form-group col">
+                <label for="lastName" [innerHTML]="'Last name'"></label>
+                <input id="lastName" class="form-control" type="email" formControlName="lastName"
+                    placeholder="Annonymous"
+                    [ngClass]="{ 'is-invalid': lastNameControl.invalid  && lastNameControl.dirty, 'is-valid': lastNameControl.valid }">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn" (click)="modal.dismiss()">
+        Cancel
+    </button>
+    <button class="btn btn-primary" (click)="sendInvitation()"
+        [disabled]="firstNameControl.invalid || lastNameControl.invalid || emailControl.invalid">
+        Send invitation email
+    </button>
+</div>

@@ -9,7 +9,7 @@
     </div>
 
     <div class="full-name">
-        {{ data.firstName }} {{ data.lastName }}
+        {{ data.firstName ? data.firstName : '---' }} {{ data.lastName ? data.lastName : '---' }}
     </div>
 
     <div class="email">

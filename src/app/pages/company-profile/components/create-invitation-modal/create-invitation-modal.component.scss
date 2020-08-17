@@ -1,0 +1,14 @@
+@import 'src/scss/variables';
+
+.btn-close {
+    & {
+        padding: 0.35rem 0.25rem;
+        cursor: pointer;
+        border-radius: 0.188rem;
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background-color: $hg-color-b-50;
+    }
+}

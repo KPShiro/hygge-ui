@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IInvitation } from '@features/company/interfaces/invitation.interface';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyFacadeService } from '@features/company/services/company-facade/company-facade.service';
 import { switchMap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateInvitationModalComponent } from '../components/create-invitation-modal/create-invitation-modal.component';
 
 
 @Component({
@@ -16,36 +17,15 @@ export class CompanyProfileComponent implements OnInit {
   public employees: any[] = [];
   public invitations: IInvitation[] = [];
 
-  public invitationForm?: FormGroup;
-
   public constructor(
-    private readonly _fb: FormBuilder,
     private readonly _route: ActivatedRoute,
     private readonly _companyFacade: CompanyFacadeService,
+    private readonly _modalService: NgbModal,
   ) { }
 
   public ngOnInit(): void {
     this.employees = this._route.snapshot.data.employees;
     this.invitations = this._route.snapshot.data.invitations;
-
-    this.invitationForm = this._fb.group({
-      email: [null, [Validators.email, Validators.required]],
-    });
-  }
-
-  public createInvitation(): void {
-    const email: string = this.invitationForm.value;
-
-    if (email === '' || email === undefined || email === null) {
-      return;
-    }
-
-    this._companyFacade.createInvitation(email).pipe(
-      switchMap(() => this._companyFacade.getInvitations()),
-    ).subscribe((invitations) => {
-      this.invitations = invitations;
-      this.invitationForm.reset();
-    });
   }
 
   public deleteInvitation(id: string): void {
@@ -58,6 +38,10 @@ export class CompanyProfileComponent implements OnInit {
 
   public deleteUserAccount(id: string): void {
     console.log(id);
+  }
+
+  public onCreateInvitationClick(): void {
+    this._modalService.open(CreateInvitationModalComponent, { centered: true });
   }
 
 }
