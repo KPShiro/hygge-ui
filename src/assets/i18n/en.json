@@ -36,8 +36,9 @@
             "invitation_card": {
                 "status_sent": "Invitation sent",
                 "status_opened": "Email opened",
-                "btn_get_link": "Get link",
-                "tooltip_link_copied": "Copied!"
+                "action_copy_link": "Copy link",
+                "action_resend": "Resend email",
+                "action_delete": "Delete"
             }
         }
     },

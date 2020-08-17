@@ -1,4 +1,4 @@
-<div class="content">
+<div class="card-content">
     <div class="status">
         <span *ngIf="wasSent">
             {{ 'page_company_profile.section_invitations.invitation_card.status_sent' | translate }}
@@ -16,16 +16,23 @@
         {{ data.email }}
     </div>
 </div>
-<div class="action-trigger">
-    <i class="uil uil-ellipsis-v"></i>
+<div ngbDropdown #actionsDropdown="ngbDropdown">
+    <div class="action-trigger" ngbDropdownToggle>
+        <i class="uil uil-ellipsis-v"></i>
+    </div>
+    <div ngbDropdownMenu aria-labelledby="invitation-actions-dropdown">
+        <button ngbDropdownItem (click)="onCopyLinkClicked()">
+            <i class="uil uil-copy"></i>
+            {{ 'page_company_profile.section_invitations.invitation_card.action_copy_link' | translate }}
+        </button>
+        <button ngbDropdownItem disabled>
+            <i class="uil uil-envelope-redo"></i>
+            {{ 'page_company_profile.section_invitations.invitation_card.action_resend' | translate }}
+        </button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem class="text-danger" (click)="onDeleteClicked()">
+            <i class="uil uil-trash"></i>
+            {{ 'page_company_profile.section_invitations.invitation_card.action_delete' | translate }}
+        </button>
+    </div>
 </div>
-<!-- <div class="actions">
-    <button #getLinkBtn="ngbTooltip" class="btn btn-light" (click)="onCopyLinkClicked()"
-        [ngbTooltip]="'page_company_profile.section_invitations.invitation_card.tooltip_link_copied' | translate"
-        triggers="manual" [autoClose]="true" [disabled]="!canCopyLink">
-        <i class="uil uil-link-alt"></i>
-    </button>
-    <button class="btn btn-light" (click)="onDeleteClicked()">
-        <i class="uil uil-trash"></i>
-    </button>
-</div> -->

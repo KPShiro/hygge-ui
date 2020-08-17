@@ -1,6 +1,6 @@
 @import 'src/scss/variables';
 
-$invitation-card-width: 384px;
+$invitation-card-width: 320px;
 
 :host {
     display: flex;
@@ -8,22 +8,16 @@ $invitation-card-width: 384px;
     padding: $hg-card-padding;
     border-radius: $hg-card-border-radius;
     background-color: $hg-color-n-0;
-    width: 320px;
+    width: $invitation-card-width;
 }
 
-.content {
+.card-content {
     flex: 1;
-}
-
-.actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }
 
 .status,
 .email {
-    font-size: 0.8em;
+    font-size: 0.75rem;
 }
 
 .status {
@@ -31,16 +25,19 @@ $invitation-card-width: 384px;
 }
 
 .full-name {
+    margin: 0.25rem 0;
+    font-size: 1.125rem;
     font-weight: bold;
 }
 
 .action-trigger {
     & {
         cursor: pointer;
+        font-size: 1.125rem;
         color: $hg-color-n-90;
     }
 
     &:hover {
-        color: $hg-color-n-600;
+        color: $hg-color-n-700;
     }
 }
